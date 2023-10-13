@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_delivery/pages/home.page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -15,11 +16,11 @@ class _LoginPageState extends State<LoginPage> {
 
     // Realize a validação e autenticação aqui, você pode usar Firebase, por exemplo.
 
-    if (email == 'seu_email' && password == 'sua_senha') {
+    if (true) {
       // Login bem-sucedido, redirecione para a próxima tela.
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => Home()),
+        MaterialPageRoute(builder: (context) => HomePage()),
       );
     } else {
       // Exiba uma mensagem de erro ou feedback para o usuário.
@@ -126,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
                      child: Row(
                        mainAxisAlignment: MainAxisAlignment.end,
                          children: [
-                           Text("Esqueceu a Senha ?",
+                           Text("Esqueceu a Senha?",
                              style: TextStyle(
                                color: Colors.deepOrange,
                              ),
@@ -136,6 +137,9 @@ class _LoginPageState extends State<LoginPage> {
                    ),
                    SizedBox(height: 20,),
                    GestureDetector(
+                     onTap: () {
+                       _login(); // Chame a função _login quando o botão for pressionado
+                     },
                      child: Container(
                        alignment: Alignment.center,
                        width: 250,
@@ -189,16 +193,4 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-class Home extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home'),
-      ),
-      body: Center(
-        child: Text('Bem-vindo à tela inicial!'),
-      ),
-    );
-  }
-}
+
