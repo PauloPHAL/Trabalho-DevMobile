@@ -75,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
              Text(
                "Flutter Delivery",
                 style: TextStyle(
-                 color: Colors.black, // Remova o segundo "TextStyle"
+                 color: Colors.white, // Remova o segundo "TextStyle"
                  fontSize: 20,
                ),
              ),
