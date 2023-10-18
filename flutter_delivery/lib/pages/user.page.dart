@@ -17,6 +17,26 @@ class _UserPageState extends State<UserPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFFEAEAEA),
+        title: Text(
+          'Minha Conta',
+          style: TextStyle(color: Colors.black),
+        ),
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        actions: [
+          Theme(
+            data: ThemeData(iconTheme: IconThemeData(color: Colors.black)),
+            child: IconButton(
+              icon: Icon(Icons.exit_to_app),
+              onPressed: () {
+                // Adicione a lógica para sair da conta aqui
+              },
+            ),
+          ),
+        ],
+      ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(

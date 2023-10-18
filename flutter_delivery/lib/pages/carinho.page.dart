@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-class LojaPage extends StatefulWidget {
+class CarrinhoPage extends StatefulWidget {
   @override
-  _LojaPageState createState() => _LojaPageState();
+  _CarrinhoPageState createState() => _CarrinhoPageState();
 }
 
-class _LojaPageState extends State<LojaPage> {
+class _CarrinhoPageState extends State<CarrinhoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFFEAEAEA),
         title: Text(
-          'Loja',
+          'Carrinho',
           style: TextStyle(color: Colors.black), // Define a cor do texto como preto
         ),
         elevation: 0,

@@ -75,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
              Text(
                "Flutter Delivery",
                 style: TextStyle(
-                 color: Colors.white, // Remova o segundo "TextStyle"
+                 color: Colors.black, // Remova o segundo "TextStyle"
                  fontSize: 20,
                ),
              ),
@@ -145,9 +145,9 @@ class _LoginPageState extends State<LoginPage> {
                        width: 250,
                        decoration: BoxDecoration(
                          borderRadius: BorderRadius.circular(50),
+
                          gradient: LinearGradient(
                              colors: [
-                               Color(0xFF8A2387),
                                Color(0xFFE94057),
                                Color(0xFFF27121)
                              ] )
