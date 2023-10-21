@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_delivery/pages/user.page.dart';
-import 'package:flutter_delivery/pages/loja.page.dart';
+import 'package:flutter_delivery/pages/loja/loja.page.dart';
 import 'package:flutter_delivery/pages/pedidos.page.dart';
 import 'package:flutter_delivery/pages/carinho.page.dart';
 

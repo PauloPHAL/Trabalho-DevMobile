@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_delivery/pages/cadastro.page.dart';
 import 'package:flutter_delivery/pages/home.page.dart';
+
 
 class LoginPage extends StatefulWidget {
   @override
@@ -77,7 +79,8 @@ class _LoginPageState extends State<LoginPage> {
                 style: TextStyle(
                  color: Colors.black, // Remova o segundo "TextStyle"
                  fontSize: 20,
-               ),
+                  fontWeight: FontWeight.bold,
+                ),
              ),
              SizedBox(height: 30),
              Container(
@@ -166,12 +169,20 @@ class _LoginPageState extends State<LoginPage> {
                    SizedBox(
                      height: 30,
                    ),
-                   Text(
-                     "Cadastrar",
-                     // Defina a cor desejada usando a propriedade color
-                     style: TextStyle(
-                       fontWeight: FontWeight.bold,
-                       color: Color(0xFFE94057),
+                   GestureDetector(
+                     onTap: () {
+                       // Redirecione para a tela de cadastro
+                       Navigator.push(
+                         context,
+                         MaterialPageRoute(builder: (context) => CadastroPage()), // Use a página de CadastroPage
+                       );
+                     },
+                     child: Text(
+                       "Cadastrar",
+                       style: TextStyle(
+                         fontWeight: FontWeight.bold,
+                         color: Color(0xFFE94057),
+                       ),
                      ),
                    ),
                    SizedBox(
