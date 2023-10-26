@@ -1,17 +1,31 @@
+import 'dart:convert';
+import 'dart:typed_data';
+import 'package:http/http.dart' as http;
 
+class Produto {
+   int id;
+   String nome;
+   double valor;
+   Uint8List img;
 
-import 'categoria.dart';
+  Produto({
+    required this.id,
+    required this.nome,
+    required this.valor,
+    required this.img,
+  });
 
-class Produto{
-  String idProduto;
-  Categoria categoria;
-  String nomeProduto;
-  String ingredientes;
-  double preco;
+  factory Produto.fromJson(Map<String, dynamic> json) {
+    return Produto(
+      id: json['id'],
+      nome: json['nome'],
+      valor: double.parse(json['valor'].replaceAll(',', '.')),
+      img: _decodeImage(json['img']),
+    );
+  }
 
-  Produto(this.idProduto, this.categoria, this.nomeProduto, this.ingredientes,
-      this.preco);
-
-
-
+  static Uint8List _decodeImage(String base64String) {
+    List<int> bytes = base64.decode(base64String);
+    return Uint8List.fromList(bytes);
+  }
 }

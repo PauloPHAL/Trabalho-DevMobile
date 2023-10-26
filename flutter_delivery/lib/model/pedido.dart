@@ -1,20 +1,34 @@
+class Pedido {
+   int id;
+   String cliente;
+   String produto;
+   double valorTotal;
+   double valorEntrega;
+   bool retirada;
+   String status;
+   String observacao;
 
-import 'package:flutter_delivery/model/produto.dart';
-import 'package:flutter_delivery/model/status.dart';
-import 'package:flutter_delivery/model/usuario.dart';
+  Pedido({
+    required this.id,
+    required this.cliente,
+    required this.produto,
+    required this.valorTotal,
+    required this.valorEntrega,
+    required this.retirada,
+    required this.status,
+    required this.observacao,
+  });
 
-class Pedido{
-
-  String idPedido;
-  Usuario cliente;
-  double total;
-  Status status;
-  DateTime data;
-  String endereco;
-  bool isRetirarNaLoja;
-  List<Produto> produtos;
-  double taxaEntrega;
-
-  Pedido(this.idPedido, this.cliente, this.total, this.status, this.data,
-      this.endereco, this.isRetirarNaLoja, this.produtos, this.taxaEntrega);
+  factory Pedido.fromJson(Map<String, dynamic> json) {
+    return Pedido(
+      id: json['id'],
+      cliente: json['cliente'],
+      produto: json['produto'],
+      valorTotal: double.parse(json['vl_total'].replaceAll(',', '.')),
+      valorEntrega: double.parse(json['vl_entrega'].replaceAll(',', '.')),
+      retirada: json['retirada'].toLowerCase() == 'não' ? false : true,
+      status: json['status'],
+      observacao: json['obs'],
+    );
+  }
 }

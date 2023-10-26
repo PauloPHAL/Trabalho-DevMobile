@@ -1,12 +1,16 @@
-import 'package:flutter_delivery/model/produto.dart';
+class Categoria {
+   int id;
+   String nome;
 
-class Categoria{
-  String idCategoria;
-  String nome;
-  List<Produto> produtos;
+  Categoria({
+    required this.id,
+    required this.nome,
+  });
 
-  Categoria(this.idCategoria, this.nome, this.produtos);
-
-
-
+  factory Categoria.fromJson(Map<String, dynamic> json) {
+    return Categoria(
+      id: json['id'],
+      nome: json['nome'],
+    );
+  }
 }
