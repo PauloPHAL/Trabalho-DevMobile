@@ -4,6 +4,9 @@ import 'package:flutter_delivery/pages/loja/loja.page.dart';
 import 'package:flutter_delivery/pages/pedidos.page.dart';
 import 'package:flutter_delivery/pages/carinho.page.dart';
 
+import 'loja/produtos.pages.dart';
+
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -11,6 +14,15 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 2; // Índice da aba selecionada na parte inferior
+
+  // Welcome? data;
+  //
+  // void handleGetRandomUser() async {
+  //   final response = await getRandomUser();
+  //
+  // }
+
+
 
   void _onItemTapped(int index) {
     setState(() {
@@ -64,26 +76,62 @@ class _HomePageState extends State<HomePage> {
       return LojaPage();
     } else if (selectedIndex == 1) {
       // Se a aba "Pedidos" estiver selecionada, exiba a página de pedidos
-      return PedidosPage();
+      return ProdutosPage();
     } else if (selectedIndex == 2) {
       // Se a aba "Carrinho" estiver selecionada, exiba a página do carrinho
       return CarrinhoPage();
     } else if (selectedIndex == 3) {
       // Se a aba "Minha Conta" estiver selecionada, exiba a página de conta do usuário
-      return UserPage(
-        "Fulano",
-        "fulano.alves@gmail.com",
-        "Endereço",
-        "12564-200",
-        "8",
-      );
+
+
+        //Use a lista de usuários aqui.
+        return UserPage(
+          "Fulano",
+          "fulano.alves@gmail.com",
+          "Endereço",
+          "12564-200",
+          "8"
+        );
+
+
+
     } else {
       // Caso contrário, exiba outro conteúdo na página
-      return Center(
+      return const Center(
         child: Text('Bem-vindo à tela inicial!'),
       );
     }
   }
+
+  // Widget _buildBody(int selectedIndex) {
+  //   if (selectedIndex == 0) {
+  //     return LojaPage();
+  //   } else if (selectedIndex == 1) {
+  //     return PedidosPage();
+  //   } else if (selectedIndex == 2) {
+  //     return CarrinhoPage();
+  //   } else if (selectedIndex == 3) {
+  //     var httpControler;
+  //     return FutureBuilder<List<Usuario>>(
+  //       future: httpControler.findAllUsers(),
+  //       builder: (context, snapshot) {
+  //         if (snapshot.connectionState == ConnectionState.waiting) {
+  //           return CircularProgressIndicator();
+  //         } else if (snapshot.hasError) {
+  //           return Text('Erro: ${snapshot.error}');
+  //         } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+  //           return UserPage(snapshot.data!.first);
+  //         } else {
+  //           return Text('Nenhum dado disponível.');
+  //         }
+  //       },
+  //     );
+  //   } else {
+  //     return const Center(
+  //       child: Text('Bem-vindo à tela inicial!'),
+  //     );
+  //   }
+  // }
 
 }
 

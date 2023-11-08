@@ -53,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
        child: Container(
          height: MediaQuery.of(context).size.height,
          width: MediaQuery.of(context).size.width,
-         decoration: BoxDecoration(
+         decoration: const BoxDecoration(
            gradient: LinearGradient(
              begin: Alignment.topLeft,
              end: Alignment.bottomRight,
@@ -67,14 +67,14 @@ class _LoginPageState extends State<LoginPage> {
          child: Column(
            crossAxisAlignment: CrossAxisAlignment.center,
            children: [
-             SizedBox(height: 80,),
-             Container(
+             const SizedBox(height: 80,),
+             SizedBox(
                width: 50, // Largura desejada
                height: 50, // Altura desejada
                child: Image.asset('images/logo.png'),
              ),
-             SizedBox(height: 15,),
-             Text(
+             const SizedBox(height: 15,),
+             const Text(
                "Flutter Delivery",
                 style: TextStyle(
                  color: Colors.black, // Remova o segundo "TextStyle"
@@ -82,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                   fontWeight: FontWeight.bold,
                 ),
              ),
-             SizedBox(height: 30),
+             const SizedBox(height: 30),
              Container(
                height: 480,
                width: 345,
@@ -93,22 +93,22 @@ class _LoginPageState extends State<LoginPage> {
                child: Column(
                  crossAxisAlignment: CrossAxisAlignment.center,
                  children: [
-                   SizedBox(height: 30,),
-                   Text('Olá',
+                   const SizedBox(height: 30,),
+                   const Text('Olá',
                    style: TextStyle(
                      fontSize: 35,
                      fontWeight: FontWeight.bold
                    ),
                    ),
-                   SizedBox(height: 10, ),
-                   Text("Acesse sua conta realizando o login",
+                   const SizedBox(height: 10, ),
+                   const Text("Acesse sua conta realizando o login",
                      style: TextStyle(
                        fontSize: 15,
                        color: Colors.grey,
                      ),
                    ),
-                  SizedBox(height: 20,),
-                  Container(
+                  const SizedBox(height: 20,),
+                  const SizedBox(
                     width: 250,
                     child: TextField(
                       decoration: InputDecoration(
@@ -116,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     )
                   ),
-                 Container(
+                 const SizedBox(
                      width: 250,
                      child: TextField(
                        obscureText: true,
@@ -138,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                          ],
                      ),
                    ),
-                   SizedBox(height: 20,),
+                   const SizedBox(height: 20,),
                    GestureDetector(
                      onTap: () {
                        _login(); // Chame a função _login quando o botão for pressionado
@@ -149,13 +149,13 @@ class _LoginPageState extends State<LoginPage> {
                        decoration: BoxDecoration(
                          borderRadius: BorderRadius.circular(50),
 
-                         gradient: LinearGradient(
+                         gradient: const LinearGradient(
                              colors: [
                                Color(0xFFE94057),
                                Color(0xFFF27121)
                              ] )
                        ),
-                       child: Padding(
+                       child: const Padding(
                          padding: EdgeInsets.all(12.0),
                          child: Text('Login',
                          style: TextStyle(
@@ -166,7 +166,7 @@ class _LoginPageState extends State<LoginPage> {
                        ),
                      ),
                    ),
-                   SizedBox(
+                   const SizedBox(
                      height: 30,
                    ),
                    GestureDetector(
@@ -177,7 +177,7 @@ class _LoginPageState extends State<LoginPage> {
                          MaterialPageRoute(builder: (context) => CadastroPage()), // Use a página de CadastroPage
                        );
                      },
-                     child: Text(
+                     child: const Text(
                        "Cadastrar",
                        style: TextStyle(
                          fontWeight: FontWeight.bold,
@@ -185,10 +185,10 @@ class _LoginPageState extends State<LoginPage> {
                        ),
                      ),
                    ),
-                   SizedBox(
+                   const SizedBox(
                      height: 30,
                    ),
-                   Text("Entrar sem cadastro",
+                   const Text("Entrar sem cadastro",
                      style: TextStyle(
                        fontWeight: FontWeight.bold,
                      ),

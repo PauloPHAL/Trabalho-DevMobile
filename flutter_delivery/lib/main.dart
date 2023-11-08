@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_delivery/pages/login.page.dart';
-import 'package:flutter_delivery/pages/home.page.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.red,
         fontFamily: 'Montserrat',
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
           bodyText2: TextStyle(
             fontWeight: FontWeight.bold, // Defina o peso da fonte como bold (mais grosso)
           ),
