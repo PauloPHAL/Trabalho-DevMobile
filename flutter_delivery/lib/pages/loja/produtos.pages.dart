@@ -87,10 +87,11 @@ class ProductItem extends StatelessWidget {
       padding: EdgeInsets.all(16.0),
       child: Column(
         children: [
-          Image.asset(
-            product.img as String, // Use Image.asset to load an image from local resources
-            width: 100.0, // Set the desired width
-            height: 100.0, // Set the desired height
+          Center(
+            child: Image.network(
+              //product.img,
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEmEqpk_DwGaE0CePAB96Oa41otmdkfxWZqUVGu_QjfWPMJblmE91Q05AddaP5GqhqZjU&usqp=CAU',
+            ),
           ),
           SizedBox(height: 8.0),
           Text(

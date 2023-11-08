@@ -5,7 +5,7 @@ class Produto {
    int id;
    String nome;
    double valor;
-   Uint8List img;
+   String img;
 
   Produto({
     required this.id,
@@ -19,12 +19,8 @@ class Produto {
       id: json['id'],
       nome: json['nome'],
       valor: double.parse(json['valor'].replaceAll(',', '.')),
-      img: _decodeImage(json['img']),
+      img: json['img'],
     );
   }
 
-  static Uint8List _decodeImage(String base64String) {
-    List<int> bytes = base64.decode(base64String);
-    return Uint8List.fromList(bytes);
-  }
 }
