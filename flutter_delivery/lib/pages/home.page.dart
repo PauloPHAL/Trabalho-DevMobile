@@ -4,6 +4,8 @@ import 'package:flutter_delivery/pages/loja/loja.page.dart';
 import 'package:flutter_delivery/pages/pedidos.page.dart';
 import 'package:flutter_delivery/pages/carinho.page.dart';
 
+import 'loja/produtos.pages.dart';
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -74,7 +76,7 @@ class _HomePageState extends State<HomePage> {
       return LojaPage();
     } else if (selectedIndex == 1) {
       // Se a aba "Pedidos" estiver selecionada, exiba a página de pedidos
-      return PedidosPage();
+      return ProdutosPage();
     } else if (selectedIndex == 2) {
       // Se a aba "Carrinho" estiver selecionada, exiba a página do carrinho
       return CarrinhoPage();
