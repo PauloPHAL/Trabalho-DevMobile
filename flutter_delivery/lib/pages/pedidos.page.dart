@@ -11,22 +11,22 @@ class PedidosPage extends StatefulWidget {
 
 class _PedidosPageState extends State<PedidosPage> {
 
-  // Future<List<Pedido>> getPedidos() async {
-  //  ERRO
-  //
-  //   var url = Uri.parse('https://dev.levsistemas.com.br/api.flutter/pedidos');
-  //
-  //   var response = await http.get(url);
-  //
-  //
-  //   if (response.statusCode == 200) {
-  //     List<dynamic> jsonData = jsonDecode(utf8.decode(response.bodyBytes));
-  //     List<Pedido> pedidos = jsonData.map((json) => Pedido.fromJson(json)).toList();
-  //     return pedidos;
-  //   } else {
-  //     throw Exception('Erro ao carregar pedidos');
-  //   }
-  // }
+  Future<List<Pedido>> getPedidos() async {
+
+
+    var url = Uri.parse('https://dev.levsistemas.com.br/api.flutter/pedidos');
+
+    var response = await http.get(url);
+
+
+    if (response.statusCode == 200) {
+      List<dynamic> jsonData = jsonDecode(utf8.decode(response.bodyBytes));
+      List<Pedido> pedidos = jsonData.map((json) => Pedido.fromJson(json)).toList();
+      return pedidos;
+    } else {
+      throw Exception('Erro ao carregar pedidos');
+    }
+  }
 
   Future<List<Teste>> getTeste() async{
     var url = Uri.parse('https://jsonplaceholder.typicode.com/posts');
@@ -71,8 +71,8 @@ class _PedidosPageState extends State<PedidosPage> {
       // body: Center(
       //   child: Text('Conteúdo da página do carrinho aqui'),
       // ),
-      body: FutureBuilder<List<Teste>>(
-        future: getTeste(),
+      body: FutureBuilder<List<Pedido>>(
+        future: getPedidos(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return const Center(
@@ -84,10 +84,10 @@ class _PedidosPageState extends State<PedidosPage> {
             return ListView.builder(
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
-                Teste teste = snapshot.data![index];
+                Pedido pedido = snapshot.data![index];
 
                 return ListTile(
-                  title: Text(teste.title),
+                  title: Text(pedido.produto),
                 );
               },
             );
