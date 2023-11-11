@@ -10,6 +10,10 @@ class Category {
 }
 
 class LojaPage extends StatefulWidget {
+  final Function(int) onCategoriaSelecionada;
+
+  LojaPage({required this.onCategoriaSelecionada});
+
   @override
   _LojaPageState createState() => _LojaPageState();
 }
@@ -41,13 +45,17 @@ class _LojaPageState extends State<LojaPage> {
         itemCount: categories.length,
         itemBuilder: (context, index) {
           final category = categories[index];
-          return CategoryItem(category: category);
+          return InkWell(
+            onTap: () {
+              widget.onCategoriaSelecionada(4);
+            },
+            child: CategoryItem(category: category),
+          );
         },
       ),
     );
   }
 }
-
 
 class CategoryItem extends StatelessWidget {
   final Category category;
@@ -57,13 +65,6 @@ class CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => ProdutosPage(),
-          ),
-        );
-      },
       child: Container(
         color: category.color,
         padding: EdgeInsets.all(16.0),

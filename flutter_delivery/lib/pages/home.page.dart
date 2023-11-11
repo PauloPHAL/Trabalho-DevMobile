@@ -13,16 +13,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 2; // Índice da aba selecionada na parte inferior
+  int _selectedIndex = 0; // Índice da aba selecionada na parte inferior
 
-  // Welcome? data;
-  //
-  // void handleGetRandomUser() async {
-  //   final response = await getRandomUser();
-  //
-  // }
-
-
+  void _changeSelectedIndex(int newIndex) {
+    setState(() {
+      print(newIndex); // Mensagem que será exibida no terminal
+      _buildBody(newIndex);
+    });
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -73,7 +71,11 @@ class _HomePageState extends State<HomePage> {
   Widget _buildBody(int selectedIndex) {
     if (selectedIndex == 0) {
       // Se a aba "Loja" estiver selecionada, exiba a página da loja
-      return LojaPage();
+      return LojaPage(
+        onCategoriaSelecionada: (int newIndex) {
+          _changeSelectedIndex(newIndex);
+        },
+      );
     } else if (selectedIndex == 1) {
       // Se a aba "Pedidos" estiver selecionada, exiba a página de pedidos
       return ProdutosPage();
@@ -81,9 +83,6 @@ class _HomePageState extends State<HomePage> {
       // Se a aba "Carrinho" estiver selecionada, exiba a página do carrinho
       return CarrinhoPage();
     } else if (selectedIndex == 3) {
-      // Se a aba "Minha Conta" estiver selecionada, exiba a página de conta do usuário
-
-
         //Use a lista de usuários aqui.
         return UserPage(
           "Fulano",
@@ -92,46 +91,17 @@ class _HomePageState extends State<HomePage> {
           "12564-200",
           "8"
         );
-
-
-
-    } else {
-      // Caso contrário, exiba outro conteúdo na página
-      return const Center(
-        child: Text('Bem-vindo à tela inicial!'),
-      );
+    } else if (selectedIndex == 4) {
+      //Use a lista de usuários aqui.
+      print('Selectec'); // Mensagem que será exibida no terminal
+      print(selectedIndex); // Mensagem que será exibida no terminal
+      return ProdutosPage();
+    } else{
+      return Text('');
     }
   }
 
-  // Widget _buildBody(int selectedIndex) {
-  //   if (selectedIndex == 0) {
-  //     return LojaPage();
-  //   } else if (selectedIndex == 1) {
-  //     return PedidosPage();
-  //   } else if (selectedIndex == 2) {
-  //     return CarrinhoPage();
-  //   } else if (selectedIndex == 3) {
-  //     var httpControler;
-  //     return FutureBuilder<List<Usuario>>(
-  //       future: httpControler.findAllUsers(),
-  //       builder: (context, snapshot) {
-  //         if (snapshot.connectionState == ConnectionState.waiting) {
-  //           return CircularProgressIndicator();
-  //         } else if (snapshot.hasError) {
-  //           return Text('Erro: ${snapshot.error}');
-  //         } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
-  //           return UserPage(snapshot.data!.first);
-  //         } else {
-  //           return Text('Nenhum dado disponível.');
-  //         }
-  //       },
-  //     );
-  //   } else {
-  //     return const Center(
-  //       child: Text('Bem-vindo à tela inicial!'),
-  //     );
-  //   }
-  // }
+
 
 }
 

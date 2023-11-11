@@ -23,8 +23,6 @@ class _PedidosPageState extends State<PedidosPage> {
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
