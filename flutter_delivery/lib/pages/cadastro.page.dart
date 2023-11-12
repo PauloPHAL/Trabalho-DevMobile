@@ -21,7 +21,7 @@ class _CadastroPageState extends State<CadastroPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFEAEAEA),
+        backgroundColor: const Color(0xFFEAEAEA),
         title: const Row(
           children: <Widget>[
             Text('Cadastro'),
@@ -57,66 +57,66 @@ class _CadastroPageState extends State<CadastroPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
+                    const SizedBox(
                       width: 250,
-                      child: const TextField(
+                      child: TextField(
                         decoration: InputDecoration(
                           labelText: "Nome",
                         ),
                       ),
                     ),
-                    Container(
+                    const SizedBox(
                       width: 250,
-                      child: const TextField(
+                      child: TextField(
                         decoration: InputDecoration(
                           labelText: "Telefone",
                         ),
                       ),
                     ),
-                    Container(
+                    const SizedBox(
                       width: 250,
-                      child: const TextField(
+                      child: TextField(
                         decoration: InputDecoration(
                           labelText: "Endereço",
                         ),
                       ),
                     ),
-                    Container(
+                    const SizedBox(
                       width: 250,
-                      child: const TextField(
+                      child: TextField(
                         decoration: InputDecoration(
                           labelText: "CEP",
                         ),
                       ),
                     ),
-                    Container(
+                    const SizedBox(
                       width: 250,
-                      child: const TextField(
+                      child: TextField(
                         decoration: InputDecoration(
                           labelText: "Número",
                         ),
                       ),
                     ),
-                    Container(
+                    const SizedBox(
                       width: 250,
-                      child: const TextField(
+                      child: TextField(
                         decoration: InputDecoration(
                           labelText: "Email",
                         ),
                       ),
                     ),
-                    Container(
+                    const SizedBox(
                       width: 250,
-                      child: const TextField(
+                      child: TextField(
                         obscureText: true,
                         decoration: InputDecoration(
                           labelText: "Senha",
                         ),
                       ),
                     ),
-                    Container(
+                    const SizedBox(
                       width: 250,
-                      child: const TextField(
+                      child: TextField(
                         obscureText: true,
                         decoration: InputDecoration(
                           labelText: "Confirmar senha",

@@ -11,6 +11,10 @@ class Item {
 class CarrinhoPage extends StatefulWidget {
   @override
   _CarrinhoPageState createState() => _CarrinhoPageState();
+
+  static void adicionarItemAoCarrinho(Item newItem) {
+    _CarrinhoPageState._adicionarItemAoCarrinho(newItem);
+  }
 }
 
 class ItemPage extends StatefulWidget {
@@ -32,16 +36,16 @@ class _ItemPageState extends State<ItemPage> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Container(
-        color: Color(0xFFEAEAEA), // Cor de fundo cinza
+        color: const Color(0xFFEAEAEA), // Cor de fundo cinza
         child: ListTile(
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 widget.item.nome,
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
               BotaoQuantidade(
                 quantidade: widget.item.quantidade,
@@ -53,13 +57,13 @@ class _ItemPageState extends State<ItemPage> {
           subtitle: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 '',
                 style: TextStyle(fontSize: 14),
               ),
               Text(
                 '\$${widget.item.preco * widget.item.quantidade}',
-                style: TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 14),
               ),
             ],
           ),
@@ -70,11 +74,17 @@ class _ItemPageState extends State<ItemPage> {
 }
 
 class _CarrinhoPageState extends State<CarrinhoPage> {
-  List<Item> carrinho = [
+  static List<Item> carrinho = [
     Item(nome: 'Hamburguer', preco: 10.0, quantidade: 2),
     Item(nome: 'Batata Frita', preco: 5.0, quantidade: 1),
     Item(nome: 'Refrigerante', preco: 2.5, quantidade: 3),
   ];
+
+  static void _adicionarItemAoCarrinho(Item newItem) {
+
+      carrinho.add(newItem);
+
+  }
 
   // Lista para armazenar os itens selecionados
   List<bool> itemSelecionado = List.generate(3, (index) => false);
@@ -85,8 +95,8 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFEAEAEA),
-        title: Text(
+        backgroundColor: const Color(0xFFEAEAEA),
+        title: const Text(
           'Carrinho',
           style: TextStyle(color: Colors.black),
         ),
@@ -98,7 +108,7 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
         child: Center(
           child: Column(
             children: [
-              Text(
+              const Text(
                 '',
                 style: TextStyle(
                   color: Colors.white,
@@ -112,7 +122,7 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
                   itemBuilder: (context, index) {
                     var item = carrinho[index];
                     return Container(
-                      margin: EdgeInsets.only(bottom: 10), // Espaçamento inferior entre os itens
+                      margin: const EdgeInsets.only(bottom: 10), // Espaçamento inferior entre os itens
                       child: ItemPage(
                         item: item,
                         onIncrement: () {
@@ -170,22 +180,22 @@ class PedidoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(10), // Adiciona margem ao redor do PedidoWidget
-      color: Color(0xFFEAEAEA), // Define a cor de fundo
+      margin: const EdgeInsets.all(10), // Adiciona margem ao redor do PedidoWidget
+      color: const Color(0xFFEAEAEA), // Define a cor de fundo
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'Total do Pedido:',
                   style: TextStyle(fontSize: 18, color: Colors.red),
                 ),
                 Text(
                   '\$$totalPedido',
-                  style: TextStyle(fontSize: 18, color: Colors.green), // Muda a cor do preço para verde
+                  style: const TextStyle(fontSize: 18, color: Colors.green), // Muda a cor do preço para verde
                 ),
               ],
             ),
@@ -194,11 +204,11 @@ class PedidoWidget extends StatelessWidget {
             onPressed: onPressedRealizarPedido,
             style: ElevatedButton.styleFrom(
               primary: Colors.red, // Cor de fundo do botão
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
             ),
-            child: Text('Realizar Pedido'),
+            child: const Text('Realizar Pedido'),
           ),
-          Text(
+          const Text(
             '',
             style: TextStyle(
               color: Colors.white,
@@ -223,8 +233,8 @@ class BotaoQuantidade extends StatelessWidget {
     return MaterialButton(
       onPressed: () {}, // Adicionado um onPressed vazio para permitir toques no botão
       minWidth: 0, // Define a largura mínima para ocupar apenas o espaço necessário
-      padding: EdgeInsets.symmetric(horizontal: 8), // Ajuste o espaçamento conforme necessário
-      color: Color(0xFFF27121), // Cor de fundo do botão
+      padding: const EdgeInsets.symmetric(horizontal: 8), // Ajuste o espaçamento conforme necessário
+      color: const Color(0xFFF27121), // Cor de fundo do botão
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
@@ -233,15 +243,15 @@ class BotaoQuantidade extends StatelessWidget {
         children: [
           IconButton(
             onPressed: onDecrement,
-            icon: Icon(Icons.remove),
+            icon: const Icon(Icons.remove),
           ),
           Text(
             quantidade.toString(),
-            style: TextStyle(fontSize: 16),
+            style: const TextStyle(fontSize: 16),
           ),
           IconButton(
             onPressed: onIncrement,
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
           ),
         ],
       ),

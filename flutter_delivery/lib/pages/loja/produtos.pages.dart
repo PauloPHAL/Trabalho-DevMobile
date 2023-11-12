@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_delivery/pages/carinho.page.dart';
 import 'package:http/http.dart' as http;
 
 import '../../model/produto.dart';
@@ -173,7 +174,8 @@ class _CarinhoState extends State<Carinho> {
             const SizedBox(height: 16.0),
             ElevatedButton.icon(
               onPressed: () {
-                // Adicione aqui a lógica para adicionar ao carrinho com a quantidade selecionada
+                Item item = Item(nome: widget.product.nome, preco: widget.product.valor, quantidade: quantidade);
+                CarrinhoPage.adicionarItemAoCarrinho(item);
                 Navigator.pop(context);
               },
               icon: const Icon(Icons.add_shopping_cart),
