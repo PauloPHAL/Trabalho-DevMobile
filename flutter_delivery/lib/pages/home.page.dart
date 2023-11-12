@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
     } else if (selectedIndex == 1) {
       _isOpenProdutos = false;
       // Se a aba "Pedidos" estiver selecionada, exiba a página de pedidos
-      return ProdutosPage();
+      return PedidosPage();
     } else if (selectedIndex == 2) {
       _isOpenProdutos = false;
       // Se a aba "Carrinho" estiver selecionada, exiba a página do carrinho
