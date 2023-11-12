@@ -32,8 +32,8 @@ class _ProdutosPageState extends State<ProdutosPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFEAEAEA),
-        title: Text(
+        backgroundColor: const Color(0xFFEAEAEA),
+        title: const Text(
           'Produtos',
           style: TextStyle(color: Colors.black),
         ),
@@ -88,7 +88,7 @@ class ProductItem extends StatelessWidget {
       },
       child: Container(
         color: Colors.white,
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             Center(
@@ -96,14 +96,14 @@ class ProductItem extends StatelessWidget {
                 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEmEqpk_DwGaE0CePAB96Oa41otmdkfxWZqUVGu_QjfWPMJblmE91Q05AddaP5GqhqZjU&usqp=CAU',
               ),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Text(
               product.nome,
-              style: TextStyle(color: Colors.black, fontSize: 18.0),
+              style: const TextStyle(color: Colors.black, fontSize: 18.0),
             ),
             Text(
               '\$${product.valor.toStringAsFixed(2)}',
-              style: TextStyle(color: Colors.black, fontSize: 16.0),
+              style: const TextStyle(color: Colors.black, fontSize: 16.0),
             ),
           ],
         ),
@@ -128,18 +128,18 @@ class _CarinhoState extends State<Carinho> {
   Widget build(BuildContext context) {
     return Dialog(
       child: Container(
-        padding: EdgeInsets.all(16.0),
-        color: Color(0xFFF27121),
+        padding: const EdgeInsets.all(16.0),
+        color: const Color(0xFFF27121),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Text(
               'Preço: \$${widget.product.valor.toStringAsFixed(2)}',
-              style: TextStyle(fontSize: 16.0, color: Colors.white),
+              style: const TextStyle(fontSize: 16.0, color: Colors.white),
             ),
-            SizedBox(height: 8.0),
-            Text(
+            const SizedBox(height: 8.0),
+            const Text(
               'Quantidade:',
               style: TextStyle(fontSize: 16.0, color: Colors.white),
             ),
@@ -154,11 +154,11 @@ class _CarinhoState extends State<Carinho> {
                       }
                     });
                   },
-                  icon: Icon(Icons.remove, color: Colors.white),
+                  icon: const Icon(Icons.remove, color: Colors.white),
                 ),
                 Text(
                   quantidade.toString(),
-                  style: TextStyle(fontSize: 16.0, color: Colors.white),
+                  style: const TextStyle(fontSize: 16.0, color: Colors.white),
                 ),
                 IconButton(
                   onPressed: () {
@@ -166,18 +166,18 @@ class _CarinhoState extends State<Carinho> {
                       quantidade++;
                     });
                   },
-                  icon: Icon(Icons.add, color: Colors.white),
+                  icon: const Icon(Icons.add, color: Colors.white),
                 ),
               ],
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             ElevatedButton.icon(
               onPressed: () {
                 // Adicione aqui a lógica para adicionar ao carrinho com a quantidade selecionada
                 Navigator.pop(context);
               },
-              icon: Icon(Icons.add_shopping_cart),
-              label: Text('Adicionar ao carrinho'),
+              icon: const Icon(Icons.add_shopping_cart),
+              label: const Text('Adicionar ao carrinho'),
             ),
           ],
         ),

@@ -22,7 +22,7 @@ class _CadastroPageState extends State<CadastroPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFFEAEAEA),
-        title: Row(
+        title: const Row(
           children: <Widget>[
             Text('Cadastro'),
           ],
@@ -32,7 +32,7 @@ class _CadastroPageState extends State<CadastroPage> {
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -46,7 +46,7 @@ class _CadastroPageState extends State<CadastroPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 70),
+              const SizedBox(height: 70),
               Container(
                 height: 580,
                 width: 345,
@@ -59,7 +59,7 @@ class _CadastroPageState extends State<CadastroPage> {
                   children: [
                     Container(
                       width: 250,
-                      child: TextField(
+                      child: const TextField(
                         decoration: InputDecoration(
                           labelText: "Nome",
                         ),
@@ -67,7 +67,7 @@ class _CadastroPageState extends State<CadastroPage> {
                     ),
                     Container(
                       width: 250,
-                      child: TextField(
+                      child: const TextField(
                         decoration: InputDecoration(
                           labelText: "Telefone",
                         ),
@@ -75,7 +75,7 @@ class _CadastroPageState extends State<CadastroPage> {
                     ),
                     Container(
                       width: 250,
-                      child: TextField(
+                      child: const TextField(
                         decoration: InputDecoration(
                           labelText: "Endereço",
                         ),
@@ -83,7 +83,7 @@ class _CadastroPageState extends State<CadastroPage> {
                     ),
                     Container(
                       width: 250,
-                      child: TextField(
+                      child: const TextField(
                         decoration: InputDecoration(
                           labelText: "CEP",
                         ),
@@ -91,7 +91,7 @@ class _CadastroPageState extends State<CadastroPage> {
                     ),
                     Container(
                       width: 250,
-                      child: TextField(
+                      child: const TextField(
                         decoration: InputDecoration(
                           labelText: "Número",
                         ),
@@ -99,7 +99,7 @@ class _CadastroPageState extends State<CadastroPage> {
                     ),
                     Container(
                       width: 250,
-                      child: TextField(
+                      child: const TextField(
                         decoration: InputDecoration(
                           labelText: "Email",
                         ),
@@ -107,7 +107,7 @@ class _CadastroPageState extends State<CadastroPage> {
                     ),
                     Container(
                       width: 250,
-                      child: TextField(
+                      child: const TextField(
                         obscureText: true,
                         decoration: InputDecoration(
                           labelText: "Senha",
@@ -116,14 +116,14 @@ class _CadastroPageState extends State<CadastroPage> {
                     ),
                     Container(
                       width: 250,
-                      child: TextField(
+                      child: const TextField(
                         obscureText: true,
                         decoration: InputDecoration(
                           labelText: "Confirmar senha",
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     GestureDetector(
@@ -135,14 +135,14 @@ class _CadastroPageState extends State<CadastroPage> {
                         width: 250,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(50),
-                          gradient: LinearGradient(
+                          gradient: const LinearGradient(
                             colors: [
                               Color(0xFFE94057),
                               Color(0xFFF27121),
                             ],
                           ),
                         ),
-                        child: Padding(
+                        child: const Padding(
                           padding: EdgeInsets.all(12.0),
                           child: Text(
                             'Cadastrar',
@@ -155,7 +155,7 @@ class _CadastroPageState extends State<CadastroPage> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                   ],

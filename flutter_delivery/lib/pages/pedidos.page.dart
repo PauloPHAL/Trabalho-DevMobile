@@ -1,24 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_delivery/model/teste.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../model/pedido.dart';
-
-class PedidoItem {
-  final String status;
-  final String produtos;
-  final double precoTotal;
-
-  PedidoItem({required this.status, required this.produtos, required this.precoTotal});
-
-  factory PedidoItem.fromJson(Map<String, dynamic> json) {
-    return PedidoItem(
-      status: json['status'],
-      produtos: json['produtos'],
-      precoTotal: json['precoTotal'].toDouble(),
-    );
-  }
-}
 
 class PedidosPage extends StatefulWidget {
   @override
@@ -26,26 +9,24 @@ class PedidosPage extends StatefulWidget {
 }
 
 class _PedidosPageState extends State<PedidosPage> {
-  // Lista estática para simular dados de pedidos
-  List<PedidoItem> pedidos = [
-    PedidoItem(
-      status: 'Entregue',
-      produtos: 'Produto A (2x), Produto B (1x)',
-      precoTotal: 50.00,
-    ),
-    PedidoItem(
-      status: 'Em processamento',
-      produtos: 'Produto C (3x)',
-      precoTotal: 30.00,
-    ),
-    // Adicione mais pedidos conforme necessário
-  ];
+
+  Future<List<Pedido>> getPedidos() async {
+    var url = Uri.parse('https://dev.levsistemas.com.br/api.flutter/pedidos');
+    var response = await http.get(url);
+    if (response.statusCode == 200) {
+      List<dynamic> jsonData = jsonDecode(utf8.decode(response.bodyBytes));
+      List<Pedido> produto = jsonData.map((json) => Pedido.fromJson(json)).toList();
+      return produto;
+    } else {
+      throw Exception('Erro ao carregar pedidos');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFEAEAEA),
+        backgroundColor: const Color(0xFFEAEAEA),
         title: const Text(
           'Pedidos',
           style: TextStyle(color: Colors.black),
@@ -54,39 +35,47 @@ class _PedidosPageState extends State<PedidosPage> {
         leading: null,
         automaticallyImplyLeading: false,
       ),
-      body: Column(
-        children: [
-          SizedBox(height: 10.0), // Espaço branco acima do ListView
-          Expanded(
-            child: ListView.builder(
-              itemCount: pedidos.length,
+      body: FutureBuilder<List<Pedido>>(
+        future: getPedidos(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return const Center(
+              child: Text('Erro ao carregar Pedidos!'),
+            );
+          }
+          if (snapshot.hasData) {
+            return ListView.builder(
+              itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
-                PedidoItem pedido = pedidos[index];
-                return PedidoItemWidget(pedido: pedido);
+                Pedido product = snapshot.data![index];
+                return PedidoItemWidget(pedido: product);
               },
-            ),
-          ),
-        ],
+            );
+          }
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
       ),
     );
   }
 }
 
 class PedidoItemWidget extends StatelessWidget {
-  final PedidoItem pedido;
+  final Pedido pedido;
 
   PedidoItemWidget({required this.pedido});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 0.0, left: 16.0, right: 16.0, bottom: 10.0), // Padding entre os elementos
+      padding: const EdgeInsets.only(top: 0.0, left: 16.0, right: 16.0, bottom: 10.0), // Padding entre os elementos
       child: Container(
         // Novo Container aninhado
-        color: Color(0xFFEAEAEA),
+        color: const Color(0xFFEAEAEA),
         child: ListTile(
           title: Text('Status: ${pedido.status}'),
-          subtitle: Text('Produtos: ${pedido.produtos} \nTotal: \$${pedido.precoTotal.toStringAsFixed(2)}'),
+          subtitle: Text('Produtos: ${pedido.produto} \nTotal: \$${pedido.valorTotal.toStringAsFixed(2)}'),
         ),
       ),
     );
