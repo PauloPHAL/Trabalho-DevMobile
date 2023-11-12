@@ -7,13 +7,17 @@ import '../../model/produto.dart';
 
 
 class ProdutosPage extends StatefulWidget {
+  final int idCategoria;
+
+  ProdutosPage({required this.idCategoria});
+
   @override
   _ProdutosPageState createState() => _ProdutosPageState();
 }
 
 class _ProdutosPageState extends State<ProdutosPage> {
   Future<List<Produto>> getProduto() async {
-    var url = Uri.parse('https://dev.levsistemas.com.br/api.flutter/produtos');
+    var url = Uri.parse('https://dev.levsistemas.com.br/api.flutter/produtos?idCategoria=${widget.idCategoria}');
     var response = await http.get(url);
     if (response.statusCode == 200) {
       List<dynamic> jsonData = jsonDecode(utf8.decode(response.bodyBytes));
@@ -47,16 +51,6 @@ class _ProdutosPageState extends State<ProdutosPage> {
           }
 
           if (snapshot.hasData) {
-            // return ListView.builder(
-            //   itemCount: snapshot.data!.length,
-            //   itemBuilder: (context, index) {
-            //     Produto produto = snapshot.data![index];
-            //
-            //     return ListTile(
-            //       title: Text(produto.),
-            //     );
-            //   },
-            // );
             return ListView.builder(
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {

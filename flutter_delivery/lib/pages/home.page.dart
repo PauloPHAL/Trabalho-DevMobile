@@ -15,15 +15,17 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0; // Índice da aba selecionada na parte inferior
   bool _isOpenProdutos = false;
+  int _idCategoria = 0;
   void _changeSelectedIndex(int newIndex) {
     setState(() {
       _selectedIndex = newIndex;
     });
   }
 
-  void _onCategoriaSelecionada(int newIndex){
+  void _onCategoriaSelecionada(int newIndex, int idCategoria){
     setState(() {
       _isOpenProdutos = true;
+      _idCategoria = idCategoria;
       _buildBody(newIndex);
     });
   }
@@ -69,8 +71,8 @@ class _HomePageState extends State<HomePage> {
       print('Loja');
       // Se a aba "Loja" estiver selecionada, exiba a página da loja
       return LojaPage(
-        onCategoriaSelecionada: (int newIndex) {
-          _onCategoriaSelecionada(newIndex);
+        onCategoriaSelecionada: (int newIndex, int idCategoria) {
+          _onCategoriaSelecionada(newIndex, idCategoria);
         },
       );
     } else if (selectedIndex == 1) {
@@ -103,7 +105,7 @@ class _HomePageState extends State<HomePage> {
         "(11) 98468-1562",
       );
     }  else {
-      return ProdutosPage();
+      return ProdutosPage(idCategoria: _idCategoria);
     }
 
   }

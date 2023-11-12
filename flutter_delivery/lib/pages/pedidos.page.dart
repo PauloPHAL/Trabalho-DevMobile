@@ -4,24 +4,42 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../model/pedido.dart';
 
+class PedidoItem {
+  final String status;
+  final String produtos;
+  final double precoTotal;
+
+  PedidoItem({required this.status, required this.produtos, required this.precoTotal});
+
+  factory PedidoItem.fromJson(Map<String, dynamic> json) {
+    return PedidoItem(
+      status: json['status'],
+      produtos: json['produtos'],
+      precoTotal: json['precoTotal'].toDouble(),
+    );
+  }
+}
+
 class PedidosPage extends StatefulWidget {
   @override
   _PedidosPageState createState() => _PedidosPageState();
 }
 
 class _PedidosPageState extends State<PedidosPage> {
-
-  Future<List<Pedido>> getPedidos() async {
-    var url = Uri.parse('https://dev.levsistemas.com.br/api.flutter/pedidos');
-    var response = await http.get(url);
-    if (response.statusCode == 200) {
-      List<dynamic> jsonData = jsonDecode(utf8.decode(response.bodyBytes));
-      List<Pedido> pedidos = jsonData.map((json) => Pedido.fromJson(json)).toList();
-      return pedidos;
-    } else {
-      throw Exception('Erro ao carregar pedidos');
-    }
-  }
+  // Lista estática para simular dados de pedidos
+  List<PedidoItem> pedidos = [
+    PedidoItem(
+      status: 'Entregue',
+      produtos: 'Produto A (2x), Produto B (1x)',
+      precoTotal: 50.00,
+    ),
+    PedidoItem(
+      status: 'Em processamento',
+      produtos: 'Produto C (3x)',
+      precoTotal: 30.00,
+    ),
+    // Adicione mais pedidos conforme necessário
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -36,33 +54,43 @@ class _PedidosPageState extends State<PedidosPage> {
         leading: null,
         automaticallyImplyLeading: false,
       ),
-      body: FutureBuilder<List<Pedido>>(
-        future: getPedidos(),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return const Center(
-              child: Text('Erro ao carregar Teste!'),
-            );
-          }
-
-          if (snapshot.hasData) {
-            return ListView.builder(
-              itemCount: snapshot.data!.length,
+      body: Column(
+        children: [
+          SizedBox(height: 10.0), // Espaço branco acima do ListView
+          Expanded(
+            child: ListView.builder(
+              itemCount: pedidos.length,
               itemBuilder: (context, index) {
-                Pedido pedido = snapshot.data![index];
-
-                return ListTile(
-                  title: Text(pedido.produto),
-                );
+                PedidoItem pedido = pedidos[index];
+                return PedidoItemWidget(pedido: pedido);
               },
-            );
-          }
-
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        },
+            ),
+          ),
+        ],
       ),
     );
   }
 }
+
+class PedidoItemWidget extends StatelessWidget {
+  final PedidoItem pedido;
+
+  PedidoItemWidget({required this.pedido});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(top: 0.0, left: 16.0, right: 16.0, bottom: 10.0), // Padding entre os elementos
+      child: Container(
+        // Novo Container aninhado
+        color: Color(0xFFEAEAEA),
+        child: ListTile(
+          title: Text('Status: ${pedido.status}'),
+          subtitle: Text('Produtos: ${pedido.produtos} \nTotal: \$${pedido.precoTotal.toStringAsFixed(2)}'),
+        ),
+      ),
+    );
+  }
+}
+
+

@@ -10,7 +10,7 @@ class Category {
 }
 
 class LojaPage extends StatefulWidget {
-  final Function(int) onCategoriaSelecionada;
+  final Function(int, int) onCategoriaSelecionada;
 
   LojaPage({required this.onCategoriaSelecionada});
 
@@ -47,7 +47,7 @@ class _LojaPageState extends State<LojaPage> {
           final category = categories[index];
           return InkWell(
             onTap: () {
-              widget.onCategoriaSelecionada(4);
+              widget.onCategoriaSelecionada(4, category.id);
             },
             child: CategoryItem(category: category),
           );
