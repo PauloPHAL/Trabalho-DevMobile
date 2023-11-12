@@ -5,8 +5,8 @@ class Category {
   final String name;
   final Color color;
   final String imageUrl;
-
-  Category({required this.name, required this.color, required this.imageUrl});
+  final int id;
+  Category({required this.name, required this.color, required this.imageUrl, required this.id});
 }
 
 class LojaPage extends StatefulWidget {
@@ -20,12 +20,12 @@ class LojaPage extends StatefulWidget {
 
 class _LojaPageState extends State<LojaPage> {
   final List<Category> categories = [
-    Category(name: 'Pizza', color: Color(0xFFE7D7), imageUrl: 'images/pizza.png'),
-    Category(name: 'Lanches', color: Color(0xFFCEAD), imageUrl: 'images/lanches.png'),
-    Category(name: 'Comidas', color: Color(0xFFCEAD), imageUrl: 'images/comida.jpg'),
-    Category(name: 'Bebidas', color: Color(0xFFCEAD), imageUrl: 'images/bebidas.png'),
-    Category(name: 'Açaí', color: Color(0xFFCEAD), imageUrl: 'images/acai.png'),
-    Category(name: 'Sobremesas', color: Color(0xFFCEAD), imageUrl: 'images/sobremesas.png'),
+    Category(name: 'Pizza', color: Color(0xFFE7D7), imageUrl: 'images/pizza.png', id: 1),
+    Category(name: 'Lanches', color: Color(0xFFCEAD), imageUrl: 'images/lanches.png', id: 2),
+    Category(name: 'Comidas', color: Color(0xFFCEAD), imageUrl: 'images/comida.jpg', id: 3),
+    Category(name: 'Bebidas', color: Color(0xFFCEAD), imageUrl: 'images/bebidas.png', id: 4),
+    Category(name: 'Açaí', color: Color(0xFFCEAD), imageUrl: 'images/acai.png', id: 5),
+    Category(name: 'Sobremesas', color: Color(0xFFCEAD), imageUrl: 'images/sobremesas.png', id: 4),
   ];
 
   @override

@@ -36,9 +36,6 @@ class _PedidosPageState extends State<PedidosPage> {
         leading: null,
         automaticallyImplyLeading: false,
       ),
-      // body: Center(
-      //   child: Text('Conteúdo da página do carrinho aqui'),
-      // ),
       body: FutureBuilder<List<Pedido>>(
         future: getPedidos(),
         builder: (context, snapshot) {

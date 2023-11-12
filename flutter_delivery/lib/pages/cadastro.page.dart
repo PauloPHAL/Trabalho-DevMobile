@@ -69,15 +69,7 @@ class _CadastroPageState extends State<CadastroPage> {
                       width: 250,
                       child: TextField(
                         decoration: InputDecoration(
-                          labelText: "CEP",
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: 250,
-                      child: TextField(
-                        decoration: InputDecoration(
-                          labelText: "Número",
+                          labelText: "Telefone",
                         ),
                       ),
                     ),
@@ -93,7 +85,15 @@ class _CadastroPageState extends State<CadastroPage> {
                       width: 250,
                       child: TextField(
                         decoration: InputDecoration(
-                          labelText: "Cidade",
+                          labelText: "CEP",
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 250,
+                      child: TextField(
+                        decoration: InputDecoration(
+                          labelText: "Número",
                         ),
                       ),
                     ),

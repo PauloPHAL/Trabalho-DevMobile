@@ -188,11 +188,11 @@ class _LoginPageState extends State<LoginPage> {
                    const SizedBox(
                      height: 30,
                    ),
-                   const Text("Entrar sem cadastro",
-                     style: TextStyle(
-                       fontWeight: FontWeight.bold,
-                     ),
-                   )
+                   // const Text("Entrar sem cadastro",
+                   //   style: TextStyle(
+                   //     fontWeight: FontWeight.bold,
+                   //   ),
+                   // )
                  ],
                ),
              )

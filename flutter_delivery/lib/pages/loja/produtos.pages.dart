@@ -82,27 +82,111 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      padding: EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          Center(
-            child: Image.network(
-              //product.img,
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEmEqpk_DwGaE0CePAB96Oa41otmdkfxWZqUVGu_QjfWPMJblmE91Q05AddaP5GqhqZjU&usqp=CAU',
+    return GestureDetector(
+      onTap: () {
+        // Mostrar a tela Carinho ao clicar no item
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return Carinho(product: product);
+          },
+        );
+      },
+      child: Container(
+        color: Colors.white,
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Center(
+              child: Image.network(
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEmEqpk_DwGaE0CePAB96Oa41otmdkfxWZqUVGu_QjfWPMJblmE91Q05AddaP5GqhqZjU&usqp=CAU',
+              ),
             ),
-          ),
-          SizedBox(height: 8.0),
-          Text(
-            product.nome,
-            style: TextStyle(color: Colors.black, fontSize: 18.0),
-          ),
-          Text(
-            '\$${product.valor.toStringAsFixed(2)}', // Display price with 2 decimal places
-            style: TextStyle(color: Colors.black, fontSize: 16.0),
-          ),
-        ],
+            SizedBox(height: 8.0),
+            Text(
+              product.nome,
+              style: TextStyle(color: Colors.black, fontSize: 18.0),
+            ),
+            Text(
+              '\$${product.valor.toStringAsFixed(2)}',
+              style: TextStyle(color: Colors.black, fontSize: 16.0),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Carinho extends StatefulWidget {
+  final Produto product;
+
+  Carinho({required this.product});
+
+  @override
+  _CarinhoState createState() => _CarinhoState();
+}
+
+class _CarinhoState extends State<Carinho> {
+  int quantidade = 1;
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+        padding: EdgeInsets.all(16.0),
+        color: Color(0xFFF27121),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(height: 8.0),
+            Text(
+              'Preço: \$${widget.product.valor.toStringAsFixed(2)}',
+              style: TextStyle(fontSize: 16.0, color: Colors.white),
+            ),
+            SizedBox(height: 8.0),
+            Text(
+              'Quantidade:',
+              style: TextStyle(fontSize: 16.0, color: Colors.white),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      if (quantidade > 1) {
+                        quantidade--;
+                      }
+                    });
+                  },
+                  icon: Icon(Icons.remove, color: Colors.white),
+                ),
+                Text(
+                  quantidade.toString(),
+                  style: TextStyle(fontSize: 16.0, color: Colors.white),
+                ),
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      quantidade++;
+                    });
+                  },
+                  icon: Icon(Icons.add, color: Colors.white),
+                ),
+              ],
+            ),
+            SizedBox(height: 16.0),
+            ElevatedButton.icon(
+              onPressed: () {
+                // Adicione aqui a lógica para adicionar ao carrinho com a quantidade selecionada
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.add_shopping_cart),
+              label: Text('Adicionar ao carrinho'),
+            ),
+          ],
+        ),
       ),
     );
   }

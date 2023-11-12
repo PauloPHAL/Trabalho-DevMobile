@@ -14,18 +14,17 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0; // Índice da aba selecionada na parte inferior
-
+  bool _isOpenProdutos = false;
   void _changeSelectedIndex(int newIndex) {
     setState(() {
-      print(newIndex); // Mensagem que será exibida no terminal
-      _buildBody(newIndex);
+      _selectedIndex = newIndex;
     });
   }
 
-  void _onItemTapped(int index) {
+  void _onCategoriaSelecionada(int newIndex){
     setState(() {
-      // Define o índice da aba selecionada
-      _selectedIndex = index;
+      _isOpenProdutos = true;
+      _buildBody(newIndex);
     });
   }
 
@@ -35,9 +34,7 @@ class _HomePageState extends State<HomePage> {
       body: _buildBody(_selectedIndex),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
-          setState(() {
-            _selectedIndex = index;
-          });
+          _changeSelectedIndex(index);
         },
         indicatorColor: Color(0xFFF27121),
         selectedIndex: _selectedIndex,
@@ -64,44 +61,52 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-
     );
   }
 
-  Widget _buildBody(int selectedIndex) {
-    if (selectedIndex == 0) {
+  Widget _buildBody(selectedIndex) {
+    if (selectedIndex == 0 && !_isOpenProdutos) {
+      print('Loja');
       // Se a aba "Loja" estiver selecionada, exiba a página da loja
       return LojaPage(
         onCategoriaSelecionada: (int newIndex) {
-          _changeSelectedIndex(newIndex);
+          _onCategoriaSelecionada(newIndex);
         },
       );
     } else if (selectedIndex == 1) {
+      _isOpenProdutos = false;
       // Se a aba "Pedidos" estiver selecionada, exiba a página de pedidos
       return ProdutosPage();
     } else if (selectedIndex == 2) {
+      _isOpenProdutos = false;
       // Se a aba "Carrinho" estiver selecionada, exiba a página do carrinho
       return CarrinhoPage();
     } else if (selectedIndex == 3) {
-        //Use a lista de usuários aqui.
-        return UserPage(
-          "Fulano",
-          "fulano.alves@gmail.com",
-          "Endereço",
-          "12564-200",
-          "8"
-        );
-    } else if (selectedIndex == 4) {
-      //Use a lista de usuários aqui.
-      print('Selectec'); // Mensagem que será exibida no terminal
-      print(selectedIndex); // Mensagem que será exibida no terminal
+      _isOpenProdutos = false;
+      // Use a lista de usuários aqui.
+      return UserPage(
+        "Fulano",
+        "fulano.alves@gmail.com",
+        "Rua: Avenida Paulista. App: 406",
+        "12564-200",
+        "8",
+        "(11) 98468-1562",
+      );
+    } else if (_selectedIndex == 3) {
+      // Use a lista de usuários aqui.
+      return UserPage(
+        "Fulano",
+        "fulano.alves@gmail.com",
+        "Rua: Avenida Paulista. App: 406",
+        "12564-200",
+        "8",
+        "(11) 98468-1562",
+      );
+    }  else {
       return ProdutosPage();
-    } else{
-      return Text('');
     }
+
   }
-
-
-
 }
+
 
