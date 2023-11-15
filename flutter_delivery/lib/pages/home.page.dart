@@ -4,10 +4,15 @@ import 'package:flutter_delivery/pages/loja/loja.page.dart';
 import 'package:flutter_delivery/pages/pedidos.page.dart';
 import 'package:flutter_delivery/pages/carinho.page.dart';
 
+import '../model/cliente.dart';
 import 'loja/produtos.pages.dart';
 
 
 class HomePage extends StatefulWidget {
+  Cliente cliente;
+
+  HomePage(this.cliente);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -78,7 +83,7 @@ class _HomePageState extends State<HomePage> {
     } else if (selectedIndex == 1) {
       _isOpenProdutos = false;
       // Se a aba "Pedidos" estiver selecionada, exiba a página de pedidos
-      return PedidosPage();
+      return PedidosPage(widget.cliente);
     } else if (selectedIndex == 2) {
       _isOpenProdutos = false;
       // Se a aba "Carrinho" estiver selecionada, exiba a página do carrinho
@@ -87,22 +92,12 @@ class _HomePageState extends State<HomePage> {
       _isOpenProdutos = false;
       // Use a lista de usuários aqui.
       return UserPage(
-        "Fulano",
-        "fulano.alves@gmail.com",
-        "Rua: Avenida Paulista. App: 406",
-        "12564-200",
-        "8",
-        "(11) 98468-1562",
+        widget.cliente
       );
     } else if (_selectedIndex == 3) {
       // Use a lista de usuários aqui.
       return UserPage(
-        "Fulano",
-        "fulano.alves@gmail.com",
-        "Rua: Avenida Paulista. App: 406",
-        "12564-200",
-        "8",
-        "(11) 98468-1562",
+          widget.cliente
       );
     }  else {
       return ProdutosPage(idCategoria: _idCategoria);

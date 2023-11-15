@@ -1,20 +1,67 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_delivery/pages/login.page.dart';
-
+import 'package:http/http.dart' as http;
 class CadastroPage extends StatefulWidget {
   @override
   _CadastroPageState createState() => _CadastroPageState();
 }
 
 class _CadastroPageState extends State<CadastroPage> {
+  TextEditingController nomeController = TextEditingController();
+  TextEditingController telefoneController = TextEditingController();
+  TextEditingController enderecoController = TextEditingController();
+  TextEditingController cepController = TextEditingController();
+  TextEditingController numeroCasaController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController senhaController = TextEditingController();
+  TextEditingController confirmarSenhaController = TextEditingController();
 
-  void _cadastrar() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => LoginPage()),
-    );
+  Future<void> _cadastrar() async{
+    final String url = 'https://dev.levsistemas.com.br/api.flutter/clientes/cadastra';
+
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        body: {
+          'nome': nomeController.text,
+          'email': emailController.text,
+          'telefone': telefoneController.text,
+          'senha': senhaController.text,
+          'cosenha': confirmarSenhaController.text,
+          'endereco': enderecoController.text,
+          'cep': cepController.text,
+          'numeroCasa': numeroCasaController.text,
+        },
+      );
+      if (response.statusCode == 200) {
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => LoginPage()),
+        );
+      } else {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text('Erro de cadastro'),
+              content: Text('Senhas são diferentes'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('Fechar'),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    } catch (error) {
+      print('Erro ao fazer cadastro: $error');
+    }
+
   }
 
   @override
@@ -57,68 +104,76 @@ class _CadastroPageState extends State<CadastroPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const SizedBox(
+                    SizedBox(
                       width: 250,
                       child: TextField(
-                        decoration: InputDecoration(
+                        controller: nomeController,
+                        decoration: const InputDecoration(
                           labelText: "Nome",
                         ),
                       ),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: 250,
                       child: TextField(
-                        decoration: InputDecoration(
+                        controller: telefoneController,
+                        decoration: const InputDecoration(
                           labelText: "Telefone",
                         ),
                       ),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: 250,
                       child: TextField(
-                        decoration: InputDecoration(
+                        controller: enderecoController,
+                        decoration: const InputDecoration(
                           labelText: "Endereço",
                         ),
                       ),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: 250,
                       child: TextField(
-                        decoration: InputDecoration(
+                        controller: cepController,
+                        decoration: const InputDecoration(
                           labelText: "CEP",
                         ),
                       ),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: 250,
                       child: TextField(
-                        decoration: InputDecoration(
+                        controller: numeroCasaController,
+                        decoration: const InputDecoration(
                           labelText: "Número",
                         ),
                       ),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: 250,
                       child: TextField(
-                        decoration: InputDecoration(
+                        controller: emailController,
+                        decoration: const InputDecoration(
                           labelText: "Email",
                         ),
                       ),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: 250,
                       child: TextField(
+                        controller: senhaController,
                         obscureText: true,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: "Senha",
                         ),
                       ),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: 250,
                       child: TextField(
+                        controller: confirmarSenhaController,
                         obscureText: true,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: "Confirmar senha",
                         ),
                       ),
@@ -128,7 +183,7 @@ class _CadastroPageState extends State<CadastroPage> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        _cadastrar(); // Chame a função _login quando o botão for pressionado
+                        _cadastrar();
                       },
                       child: Container(
                         alignment: Alignment.center,

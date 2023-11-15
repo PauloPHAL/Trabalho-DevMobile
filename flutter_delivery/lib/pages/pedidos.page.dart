@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import '../model/cliente.dart';
 import '../model/pedido.dart';
 
 class PedidosPage extends StatefulWidget {
+  Cliente cliente;
+  PedidosPage(this.cliente);
   @override
   _PedidosPageState createState() => _PedidosPageState();
 }
@@ -11,7 +14,7 @@ class PedidosPage extends StatefulWidget {
 class _PedidosPageState extends State<PedidosPage> {
 
   Future<List<Pedido>> getPedidos() async {
-    var url = Uri.parse('https://dev.levsistemas.com.br/api.flutter/pedidos');
+    var url = Uri.parse('https://dev.levsistemas.com.br/api.flutter/pedidos?idCliente=${widget.cliente.id}');
     var response = await http.get(url);
     if (response.statusCode == 200) {
       List<dynamic> jsonData = jsonDecode(utf8.decode(response.bodyBytes));

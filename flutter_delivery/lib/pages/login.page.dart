@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_delivery/pages/cadastro.page.dart';
 import 'package:flutter_delivery/pages/home.page.dart';
 import 'package:http/http.dart' as http;
+
+import '../model/cliente.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -24,9 +28,14 @@ class _LoginPageState extends State<LoginPage> {
         },
       );
       if (response.statusCode == 200) {
+        final Map<String, dynamic> responseData = json.decode(response.body);
+        final Cliente cliente = Cliente.fromJson(responseData);
+
+
+
         Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => HomePage()),
+                MaterialPageRoute(builder: (context) => HomePage(cliente)),
               );
       } else {
         showDialog(

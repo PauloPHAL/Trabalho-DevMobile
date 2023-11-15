@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 
-class UserPage extends StatefulWidget {
-  final String name;
-  final String email;
-  final String address;
-  final String cep;
-  final String number;
-  final String phone;
+import '../model/cliente.dart';
 
-  UserPage(this.name, this.email, this.address, this.cep, this.number, this.phone);
+class UserPage extends StatefulWidget {
+   Cliente cliente;
+
+  UserPage(this.cliente);
 
   @override
   _UserPageState createState() => _UserPageState();
@@ -25,11 +22,11 @@ class _UserPageState extends State<UserPage> {
   @override
   void initState() {
     super.initState();
-    emailController.text = widget.email;
-    phoneController.text = widget.phone;
-    addressController.text = widget.address;
-    cepController.text = widget.cep;
-    numeroController.text = widget.number;
+    emailController.text = widget.cliente.email;
+    phoneController.text = widget.cliente.telefone;
+    addressController.text = widget.cliente.endereco;
+    cepController.text = widget.cliente.cep;
+    numeroController.text = widget.cliente.numeroCasa;
     // Adicione inicializações para outros controladores, se necessário
   }
 
@@ -70,7 +67,7 @@ class _UserPageState extends State<UserPage> {
                   size: 96.0,
                 ),
                 Text(
-                  '${widget.name}',
+                  '${widget.cliente.nome}',
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 16.0),
