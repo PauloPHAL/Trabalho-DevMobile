@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_delivery/pages/cadastro.page.dart';
 import 'package:flutter_delivery/pages/home.page.dart';
-
+import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
   @override
@@ -10,41 +10,48 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController senhaController = TextEditingController();
 
-  void _login() {
-    String email = emailController.text;
-    String password = passwordController.text;
+  Future<void> _login() async {
+    final String url = 'https://dev.levsistemas.com.br/api.flutter/clientes/auth';
 
-    // Realize a validação e autenticação aqui, você pode usar Firebase, por exemplo.
-
-    if (true) {
-      // Login bem-sucedido, redirecione para a próxima tela.
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => HomePage()),
-      );
-    } else {
-      // Exiba uma mensagem de erro ou feedback para o usuário.
-      showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text('Erro de autenticação'),
-            content: Text('Credenciais inválidas. Tente novamente.'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text('Fechar'),
-              ),
-            ],
-          );
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        body: {
+          'email': emailController.text,
+          'senha': senhaController.text,
         },
       );
+      if (response.statusCode == 200) {
+        Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
+              );
+      } else {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text('Erro de autenticação'),
+              content: Text('Credenciais inválidas. Tente novamente.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context); // Fecha a caixa de diálogo
+                  },
+                  child: Text('Fechar'),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    } catch (error) {
+      print('Erro ao fazer login: $error');
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -108,22 +115,24 @@ class _LoginPageState extends State<LoginPage> {
                      ),
                    ),
                   const SizedBox(height: 20,),
-                  const SizedBox(
-                    width: 250,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        labelText: "Email",
-                      ),
-                    )
-                  ),
-                 const SizedBox(
+                   SizedBox(
                      width: 250,
                      child: TextField(
+                       controller: emailController,
+                       decoration: const InputDecoration(
+                         labelText: "Email",
+                       ),
+                     ),
+                   ),
+                   SizedBox(
+                     width: 250,
+                     child: TextField(
+                       controller: senhaController,
                        obscureText: true,
-                       decoration: InputDecoration(
+                       decoration: const InputDecoration(
                          labelText: "Senha",
                        ),
-                     )
+                     ),
                    ),
                    const Padding(
                      padding: EdgeInsets.fromLTRB(20, 20, 40, 20),
@@ -141,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                    const SizedBox(height: 20,),
                    GestureDetector(
                      onTap: () {
-                       _login(); // Chame a função _login quando o botão for pressionado
+                       _login();
                      },
                      child: Container(
                        alignment: Alignment.center,
@@ -171,7 +180,7 @@ class _LoginPageState extends State<LoginPage> {
                    ),
                    GestureDetector(
                      onTap: () {
-                       // Redirecione para a tela de cadastro
+
                        Navigator.push(
                          context,
                          MaterialPageRoute(builder: (context) => CadastroPage()), // Use a página de CadastroPage
@@ -188,11 +197,7 @@ class _LoginPageState extends State<LoginPage> {
                    const SizedBox(
                      height: 30,
                    ),
-                   // const Text("Entrar sem cadastro",
-                   //   style: TextStyle(
-                   //     fontWeight: FontWeight.bold,
-                   //   ),
-                   // )
+
                  ],
                ),
              )

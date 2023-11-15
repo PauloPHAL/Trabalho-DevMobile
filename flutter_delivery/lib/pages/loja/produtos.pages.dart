@@ -93,9 +93,12 @@ class ProductItem extends StatelessWidget {
         child: Column(
           children: [
             Center(
-              child: Image.network(
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEmEqpk_DwGaE0CePAB96Oa41otmdkfxWZqUVGu_QjfWPMJblmE91Q05AddaP5GqhqZjU&usqp=CAU',
-              ),
+              child: Image.memory(
+                base64Decode(product.img),
+                fit: BoxFit.cover,
+                width: 300.0,
+                height: 300.0,
+              )
             ),
             const SizedBox(height: 8.0),
             Text(
