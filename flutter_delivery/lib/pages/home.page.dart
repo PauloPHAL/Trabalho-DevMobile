@@ -73,7 +73,6 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildBody(selectedIndex) {
     if (selectedIndex == 0 && !_isOpenProdutos) {
-      print('Loja');
       // Se a aba "Loja" estiver selecionada, exiba a página da loja
       return LojaPage(
         onCategoriaSelecionada: (int newIndex, int idCategoria) {
@@ -87,7 +86,7 @@ class _HomePageState extends State<HomePage> {
     } else if (selectedIndex == 2) {
       _isOpenProdutos = false;
       // Se a aba "Carrinho" estiver selecionada, exiba a página do carrinho
-      return CarrinhoPage();
+      return CarrinhoPage(widget.cliente);
     } else if (selectedIndex == 3) {
       _isOpenProdutos = false;
       // Use a lista de usuários aqui.

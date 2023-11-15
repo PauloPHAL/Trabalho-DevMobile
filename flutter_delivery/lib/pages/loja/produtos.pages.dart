@@ -8,7 +8,7 @@ import '../../model/produto.dart';
 
 
 class ProdutosPage extends StatefulWidget {
-  final int idCategoria;
+  int idCategoria;
 
   ProdutosPage({required this.idCategoria});
 
@@ -177,7 +177,7 @@ class _CarinhoState extends State<Carinho> {
             const SizedBox(height: 16.0),
             ElevatedButton.icon(
               onPressed: () {
-                Item item = Item(nome: widget.product.nome, preco: widget.product.valor, quantidade: quantidade);
+                Item item = Item(idProduto: widget.product.id,nome: widget.product.nome, preco: widget.product.valor, quantidade: quantidade);
                 CarrinhoPage.adicionarItemAoCarrinho(item);
                 Navigator.pop(context);
               },

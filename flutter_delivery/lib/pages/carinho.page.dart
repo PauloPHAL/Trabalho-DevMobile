@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_delivery/model/cliente.dart';
+import 'package:http/http.dart' as http;
 class Item {
+  int idProduto;
   String nome;
   double preco;
   int quantidade;
 
-  Item({required this.nome, required this.preco, required this.quantidade});
+  Item({required this.idProduto,required this.nome, required this.preco, required this.quantidade});
 }
 
 class CarrinhoPage extends StatefulWidget {
+  Cliente cliente;
+  CarrinhoPage(this.cliente);
+
   @override
   _CarrinhoPageState createState() => _CarrinhoPageState();
 
@@ -74,20 +79,37 @@ class _ItemPageState extends State<ItemPage> {
 }
 
 class _CarrinhoPageState extends State<CarrinhoPage> {
-  static List<Item> carrinho = [
-    Item(nome: 'Hamburguer', preco: 10.0, quantidade: 2),
-    Item(nome: 'Batata Frita', preco: 5.0, quantidade: 1),
-    Item(nome: 'Refrigerante', preco: 2.5, quantidade: 3),
-  ];
+  static List<Item> carrinho = [];
 
   static void _adicionarItemAoCarrinho(Item newItem) {
-
       carrinho.add(newItem);
-
   }
 
-  // Lista para armazenar os itens selecionados
-  List<bool> itemSelecionado = List.generate(3, (index) => false);
+  Future<void> _realizarPedido(double totalPedido, String IDs) async{
+    final String url = 'https://dev.levsistemas.com.br/api.flutter/pedidos';
+
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        body: {
+          'cliente': widget.cliente.id,
+          'produto': IDs,
+          'vlEntrega': 'pode ser nulo ou passar algum valor separado por PONTO',
+          'vlTotal': totalPedido,
+          'obs': 'qialquer observacao',
+        },
+      );
+      if (response.statusCode == 200){
+
+      }else{
+
+      }
+
+    } catch (error) {
+      print('Erro ao realizar pedido: $error');
+    }
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -144,16 +166,15 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
               ),
               // Utiliza a classe PedidoWidget para mostrar o total do pedido e o botão "Realizar Pedido"
               PedidoWidget(totalPedido: totalPedido, onPressedRealizarPedido: () {
-                // Lógica para processar itens selecionados
-                List<Item> itensSelecionados = [];
-                for (int i = 0; i < carrinho.length; i++) {
-                  if (itemSelecionado[i]) {
-                    itensSelecionados.add(carrinho[i]);
-                  }
+                List<int> listaIds = [];
+                for (var item in carrinho) {
+                  listaIds.add(item.idProduto);
                 }
+                String produtosString = listaIds.join(',');
 
-                // Lógica para realizar o pedido com os itens selecionados
-                print('Pedido realizado! Itens selecionados: $itensSelecionados');
+                //_realizarPedido(totalPedido,produtosString);
+                print('Pedido realizado!');
+
               }),
             ],
           ),
@@ -203,7 +224,7 @@ class PedidoWidget extends StatelessWidget {
           ElevatedButton(
             onPressed: onPressedRealizarPedido,
             style: ElevatedButton.styleFrom(
-              primary: Colors.red, // Cor de fundo do botão
+              primary: Colors.red,
               padding: const EdgeInsets.symmetric(horizontal: 10),
             ),
             child: const Text('Realizar Pedido'),
