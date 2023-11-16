@@ -31,34 +31,40 @@ class _LoginPageState extends State<LoginPage> {
         final Map<String, dynamic> responseData = json.decode(response.body);
         final Cliente cliente = Cliente.fromJson(responseData);
 
-
-
-        Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomePage(cliente)),
-              );
+        _openMyPage(cliente);
       } else {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: Text('Erro de autenticação'),
-              content: Text('Credenciais inválidas. Tente novamente.'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context); // Fecha a caixa de diálogo
-                  },
-                  child: Text('Fechar'),
-                ),
-              ],
-            );
-          },
-        );
+        _openErro();
       }
     } catch (error) {
       print('Erro ao fazer login: $error');
     }
+  }
+
+  void _openErro(){
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Erro de autenticação'),
+          content: const Text('Credenciais inválidas. Tente novamente.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Fechar'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _openMyPage(Cliente cliente){
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => HomePage(cliente)),
+    );
   }
 
   @override
@@ -83,13 +89,13 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 80),
+                const SizedBox(height: 80),
                 SizedBox(
                   width: 50,
                   height: 50,
                   child: Image.asset('images/logo.png'),
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 const Text(
                   "Flutter Delivery",
                   style: TextStyle(
@@ -98,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 Container(
                   height: 480,
                   width: 345,
@@ -109,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       const Text(
                         'Olá',
                         style: TextStyle(
@@ -143,20 +149,6 @@ class _LoginPageState extends State<LoginPage> {
                           decoration: const InputDecoration(
                             labelText: "Senha",
                           ),
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.fromLTRB(20, 20, 40, 20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text(
-                              "Esqueceu a Senha?",
-                              style: TextStyle(
-                                color: Colors.deepOrange,
-                              ),
-                            )
-                          ],
                         ),
                       ),
                       const SizedBox(height: 20),

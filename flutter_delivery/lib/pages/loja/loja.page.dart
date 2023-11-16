@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_delivery/pages/loja/produtos.pages.dart';
 
 class Category {
   final String name;
@@ -20,20 +19,20 @@ class LojaPage extends StatefulWidget {
 
 class _LojaPageState extends State<LojaPage> {
   final List<Category> categories = [
-    Category(name: 'Pizza', color: Color(0xFFE7D7), imageUrl: 'images/pizza.png', id: 1),
-    Category(name: 'Lanches', color: Color(0xFFCEAD), imageUrl: 'images/lanches.png', id: 2),
-    Category(name: 'Comidas', color: Color(0xFFCEAD), imageUrl: 'images/comida.jpg', id: 3),
-    Category(name: 'Bebidas', color: Color(0xFFCEAD), imageUrl: 'images/bebidas.png', id: 4),
-    Category(name: 'Açaí', color: Color(0xFFCEAD), imageUrl: 'images/acai.png', id: 5),
-    Category(name: 'Sobremesas', color: Color(0xFFCEAD), imageUrl: 'images/sobremesas.png', id: 4),
+    Category(name: 'Pizza', color: const Color(0xFFE7D7), imageUrl: 'images/pizza.png', id: 1),
+    Category(name: 'Lanches', color: const Color(0xFFCEAD), imageUrl: 'images/lanches.png', id: 2),
+    Category(name: 'Comidas', color: const Color(0xFFCEAD), imageUrl: 'images/comida.jpg', id: 3),
+    Category(name: 'Bebidas', color: const Color(0xFFCEAD), imageUrl: 'images/bebidas.png', id: 4),
+    Category(name: 'Açaí', color: const Color(0xFFCEAD), imageUrl: 'images/acai.png', id: 5),
+    Category(name: 'Sobremesas', color: const Color(0xFFCEAD), imageUrl: 'images/sobremesas.png', id: 6),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFEAEAEA),
-        title: Text(
+        backgroundColor: const Color(0xFFEAEAEA),
+        title: const Text(
           'Loja',
           style: TextStyle(color: Colors.black),
         ),
@@ -67,7 +66,7 @@ class CategoryItem extends StatelessWidget {
     return InkWell(
       child: Container(
         color: category.color,
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             Image.asset(
@@ -75,10 +74,10 @@ class CategoryItem extends StatelessWidget {
               width: 100.0, // Defina a largura desejada
               height: 100.0, // Defina a altura desejada
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Text(
               category.name,
-              style: TextStyle(color: Colors.black, fontSize: 18.0),
+              style: const TextStyle(color: Colors.black, fontSize: 18.0),
             ),
           ],
         ),

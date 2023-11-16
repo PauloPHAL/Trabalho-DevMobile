@@ -34,34 +34,39 @@ class _CadastroPageState extends State<CadastroPage> {
         },
       );
       if (response.statusCode == 200) {
-
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => LoginPage()),
-        );
+        _irLogin();
       } else {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: Text('Erro de cadastro'),
-              content: Text('Senhas são diferentes'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text('Fechar'),
-                ),
-              ],
-            );
-          },
-        );
+        _erro();
       }
     } catch (error) {
       print('Erro ao fazer cadastro: $error');
     }
+  }
 
+  void _irLogin(){
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => LoginPage()),
+    );
+  }
+  void _erro(){
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Erro de cadastro'),
+          content: Text('Senhas são diferentes'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Fechar'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override

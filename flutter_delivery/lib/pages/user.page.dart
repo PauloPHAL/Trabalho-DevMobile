@@ -30,6 +30,10 @@ class _UserPageState extends State<UserPage> {
     // Adicione inicializações para outros controladores, se necessário
   }
 
+  void _sairApp(){
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +51,7 @@ class _UserPageState extends State<UserPage> {
             child: IconButton(
               icon: Icon(Icons.exit_to_app),
               onPressed: () {
-                // Adicione a lógica para sair da conta aqui
+                _sairApp();
               },
             ),
           ),
