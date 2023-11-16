@@ -18,7 +18,6 @@ class _UserPageState extends State<UserPage> {
   TextEditingController cepController = TextEditingController();
   TextEditingController numeroController = TextEditingController();
 
-  void _salvarAlteracoes(){}
   @override
   void initState() {
     super.initState();
@@ -27,7 +26,10 @@ class _UserPageState extends State<UserPage> {
     addressController.text = widget.cliente.endereco;
     cepController.text = widget.cliente.cep;
     numeroController.text = widget.cliente.numeroCasa;
-    // Adicione inicializações para outros controladores, se necessário
+  }
+
+  void _salvarAlteracoes(){
+
   }
 
   void _sairApp(){
@@ -38,7 +40,7 @@ class _UserPageState extends State<UserPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFEAEAEA),
+        backgroundColor: const Color(0xFFEAEAEA),
         title: const Text(
           'Minha Conta',
           style: TextStyle(color: Colors.black),
@@ -47,9 +49,9 @@ class _UserPageState extends State<UserPage> {
         automaticallyImplyLeading: false,
         actions: [
           Theme(
-            data: ThemeData(iconTheme: IconThemeData(color: Colors.black)),
+            data: ThemeData(iconTheme: const IconThemeData(color: Colors.black)),
             child: IconButton(
-              icon: Icon(Icons.exit_to_app),
+              icon: const Icon(Icons.exit_to_app),
               onPressed: () {
                 _sairApp();
               },
@@ -61,20 +63,20 @@ class _UserPageState extends State<UserPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            color: Color(0xFFF27121),
+            color: const Color(0xFFF27121),
             alignment: Alignment.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
+                const Icon(
                   Icons.account_circle,
                   size: 96.0,
                 ),
                 Text(
-                  '${widget.cliente.nome}',
+                  widget.cliente.nome,
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
               ],
             ),
           ),
@@ -84,44 +86,42 @@ class _UserPageState extends State<UserPage> {
               children: [
                 TextFormField(
                   controller: emailController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Email',
                   ),
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 TextFormField(
                   controller: phoneController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Telefone',
                   ),
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 TextFormField(
                   controller: addressController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Endereço',
                   ),
                 ),
                 TextFormField(
                   controller: cepController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'CEP',
                   ),
                 ),
                 TextFormField(
                   controller: numeroController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Número',
                   ),
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 ElevatedButton(
                   onPressed: () {
-                    // Adicione a lógica para salvar as alterações aqui
-                    // Pode acessar os valores dos controladores (emailController.text, phoneController.text, addressController.text)
                     _salvarAlteracoes();
                   },
-                  child: Text('Salvar Alterações'),
+                  child: const Text('Salvar Alterações'),
                 ),
               ],
             ),

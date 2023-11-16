@@ -70,9 +70,9 @@ class CategoryItem extends StatelessWidget {
         child: Column(
           children: [
             Image.asset(
-              category.imageUrl, // Use Image.asset para carregar uma imagem de recursos locais
-              width: 100.0, // Defina a largura desejada
-              height: 100.0, // Defina a altura desejada
+              category.imageUrl,
+              width: 100.0,
+              height: 100.0,
             ),
             const SizedBox(height: 8.0),
             Text(

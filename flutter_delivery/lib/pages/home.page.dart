@@ -18,7 +18,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0; // Índice da aba selecionada na parte inferior
+  int _selectedIndex = 0;
   bool _isOpenProdutos = false;
   int _idCategoria = 0;
   void _changeSelectedIndex(int newIndex) {
@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
         onDestinationSelected: (int index) {
           _changeSelectedIndex(index);
         },
-        indicatorColor: Color(0xFFF27121),
+        indicatorColor: const Color(0xFFF27121),
         selectedIndex: _selectedIndex,
         destinations: const <NavigationDestination>[
           NavigationDestination(
@@ -73,7 +73,6 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildBody(selectedIndex) {
     if (selectedIndex == 0 && !_isOpenProdutos) {
-      // Se a aba "Loja" estiver selecionada, exiba a página da loja
       return LojaPage(
         onCategoriaSelecionada: (int newIndex, int idCategoria) {
           _onCategoriaSelecionada(newIndex, idCategoria);
@@ -81,27 +80,22 @@ class _HomePageState extends State<HomePage> {
       );
     } else if (selectedIndex == 1) {
       _isOpenProdutos = false;
-      // Se a aba "Pedidos" estiver selecionada, exiba a página de pedidos
       return PedidosPage(widget.cliente);
     } else if (selectedIndex == 2) {
       _isOpenProdutos = false;
-      // Se a aba "Carrinho" estiver selecionada, exiba a página do carrinho
       return CarrinhoPage(widget.cliente);
     } else if (selectedIndex == 3) {
       _isOpenProdutos = false;
-      // Use a lista de usuários aqui.
       return UserPage(
         widget.cliente
       );
     } else if (_selectedIndex == 3) {
-      // Use a lista de usuários aqui.
       return UserPage(
           widget.cliente
       );
     }  else {
       return ProdutosPage(idCategoria: _idCategoria);
     }
-
   }
 }
 

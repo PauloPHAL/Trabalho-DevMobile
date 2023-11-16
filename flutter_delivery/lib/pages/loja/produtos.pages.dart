@@ -17,6 +17,7 @@ class ProdutosPage extends StatefulWidget {
 }
 
 class _ProdutosPageState extends State<ProdutosPage> {
+
   Future<List<Produto>> getProduto() async {
     var url = Uri.parse('https://dev.levsistemas.com.br/api.flutter/produtos?idCategoria=${widget.idCategoria}');
     var response = await http.get(url);
@@ -50,7 +51,6 @@ class _ProdutosPageState extends State<ProdutosPage> {
               child: Text('Erro ao carregar Produtos!'),
             );
           }
-
           if (snapshot.hasData) {
             return ListView.builder(
               itemCount: snapshot.data!.length,
@@ -60,7 +60,6 @@ class _ProdutosPageState extends State<ProdutosPage> {
               },
             );
           }
-
           return const Center(
             child: CircularProgressIndicator(),
           );
@@ -79,7 +78,6 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Mostrar a tela Carinho ao clicar no item
         showDialog(
           context: context,
           builder: (BuildContext context) {

@@ -17,7 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController senhaController = TextEditingController();
 
   Future<void> _login() async {
-    final String url = 'https://dev.levsistemas.com.br/api.flutter/clientes/auth';
+    String url = 'https://dev.levsistemas.com.br/api.flutter/clientes/auth';
 
     try {
       final response = await http.post(

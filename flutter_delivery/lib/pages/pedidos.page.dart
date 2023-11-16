@@ -74,7 +74,6 @@ class PedidoItemWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(top: 0.0, left: 16.0, right: 16.0, bottom: 10.0), // Padding entre os elementos
       child: Container(
-        // Novo Container aninhado
         color: const Color(0xFFEAEAEA),
         child: ListTile(
           title: Text('Status: ${pedido.status}'),

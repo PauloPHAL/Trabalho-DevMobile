@@ -43,7 +43,7 @@ class _ItemPageState extends State<ItemPage> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Container(
-        color: const Color(0xFFEAEAEA), // Cor de fundo cinza
+        color: const Color(0xFFEAEAEA),
         child: ListTile(
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -86,7 +86,7 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
   }
 
   Future<void> _realizarPedido(double totalPedido, String IDs) async{
-    final String url = 'https://dev.levsistemas.com.br/api.flutter/pedidos';
+    String url = 'https://dev.levsistemas.com.br/api.flutter/pedidos';
 
     try {
       final response = await http.post(
@@ -104,11 +104,9 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
       }else{
 
       }
-
     } catch (error) {
       print('Erro ao realizar pedido: $error');
     }
-
   }
 
   @override
@@ -137,14 +135,13 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
                   fontSize: 20,
                 ),
               ),
-              // Lista de itens no carrinho com botões de mais e menos
               Expanded(
                 child: ListView.builder(
                   itemCount: carrinho.length,
                   itemBuilder: (context, index) {
                     var item = carrinho[index];
                     return Container(
-                      margin: const EdgeInsets.only(bottom: 10), // Espaçamento inferior entre os itens
+                      margin: const EdgeInsets.only(bottom: 10),
                       child: ItemPage(
                         item: item,
                         onIncrement: () {
@@ -164,7 +161,6 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
                   },
                 ),
               ),
-              // Utiliza a classe PedidoWidget para mostrar o total do pedido e o botão "Realizar Pedido"
               PedidoWidget(totalPedido: totalPedido, onPressedRealizarPedido: () {
                 List<int> listaIds = [];
                 for (var item in carrinho) {
@@ -201,8 +197,8 @@ class PedidoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(10), // Adiciona margem ao redor do PedidoWidget
-      color: const Color(0xFFEAEAEA), // Define a cor de fundo
+      margin: const EdgeInsets.all(10),
+      color: const Color(0xFFEAEAEA),
       child: Column(
         children: [
           Container(
@@ -216,7 +212,7 @@ class PedidoWidget extends StatelessWidget {
                 ),
                 Text(
                   '\$$totalPedido',
-                  style: const TextStyle(fontSize: 18, color: Colors.green), // Muda a cor do preço para verde
+                  style: const TextStyle(fontSize: 18, color: Colors.green),
                 ),
               ],
             ),
@@ -252,10 +248,10 @@ class BotaoQuantidade extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      onPressed: () {}, // Adicionado um onPressed vazio para permitir toques no botão
-      minWidth: 0, // Define a largura mínima para ocupar apenas o espaço necessário
-      padding: const EdgeInsets.symmetric(horizontal: 8), // Ajuste o espaçamento conforme necessário
-      color: const Color(0xFFF27121), // Cor de fundo do botão
+      onPressed: () {},
+      minWidth: 0,
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      color: const Color(0xFFF27121),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
