@@ -19,12 +19,12 @@ class LojaPage extends StatefulWidget {
 
 class _LojaPageState extends State<LojaPage> {
   final List<Category> categories = [
-    Category(name: 'Pizza', color: const Color(0xFFE7D7), imageUrl: 'images/pizza.png', id: 1),
-    Category(name: 'Lanches', color: const Color(0xFFCEAD), imageUrl: 'images/lanches.png', id: 2),
-    Category(name: 'Comidas', color: const Color(0xFFCEAD), imageUrl: 'images/comida.jpg', id: 3),
-    Category(name: 'Bebidas', color: const Color(0xFFCEAD), imageUrl: 'images/bebidas.png', id: 4),
-    Category(name: 'Açaí', color: const Color(0xFFCEAD), imageUrl: 'images/acai.png', id: 5),
-    Category(name: 'Sobremesas', color: const Color(0xFFCEAD), imageUrl: 'images/sobremesas.png', id: 6),
+    Category(name: 'Pizza', color: const Color(0xFFE7D7), imageUrl: 'assets/images/pizza.png', id: 0),
+    Category(name: 'Lanches', color: const Color(0xFFCEAD), imageUrl: 'assets/images/lanches.png', id: 1),
+    Category(name: 'Comidas', color: const Color(0xFFCEAD), imageUrl: 'assets/images/comida.jpg', id: 2),
+    Category(name: 'Bebidas', color: const Color(0xFFCEAD), imageUrl: 'assets/images/bebidas.png', id: 3),
+    Category(name: 'Açaí', color: const Color(0xFFCEAD), imageUrl: 'assets/images/acai.png', id: 4),
+    Category(name: 'Sobremesas', color: const Color(0xFFCEAD), imageUrl: 'assets/images/sobremesas.png', id: 5),
   ];
 
   @override

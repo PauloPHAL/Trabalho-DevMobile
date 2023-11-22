@@ -27,10 +27,10 @@ class _UserPageState extends State<UserPage> {
     cepController.text = widget.cliente.cep;
     numeroController.text = widget.cliente.numeroCasa;
   }
-
-  void _salvarAlteracoes(){
-
-  }
+  //
+  // void _salvarAlteracoes(){
+  //
+  // }
 
   void _sairApp(){
 
@@ -117,12 +117,12 @@ class _UserPageState extends State<UserPage> {
                   ),
                 ),
                 const SizedBox(height: 16.0),
-                ElevatedButton(
-                  onPressed: () {
-                    _salvarAlteracoes();
-                  },
-                  child: const Text('Salvar Alterações'),
-                ),
+                // ElevatedButton(
+                //   onPressed: () {
+                //     _salvarAlteracoes();
+                //   },
+                //   child: const Text('Salvar Alterações'),
+                // ),
               ],
             ),
           ),

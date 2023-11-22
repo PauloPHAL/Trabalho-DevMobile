@@ -1,7 +1,7 @@
 class Pedido {
    int id;
    String cliente;
-   String produto;
+   List<String> produto;
    double valorTotal;
    double valorEntrega;
    bool retirada;
@@ -19,16 +19,23 @@ class Pedido {
     required this.observacao,
   });
 
-  factory Pedido.fromJson(Map<String, dynamic> json) {
-    return Pedido(
-      id: json['id'],
-      cliente: json['cliente'],
-      produto: json['produto'],
-      valorTotal: double.parse(json['vl_total'].replaceAll(',', '.')),
-      valorEntrega: double.parse(json['vl_entrega'].replaceAll(',', '.')),
-      retirada: json['retirada'].toLowerCase() == 'não' ? false : true,
-      status: json['status'],
-      observacao: json['obs'],
-    );
-  }
+   factory Pedido.fromJson(Map<String, dynamic> map) {
+     List<String> produtos = [];
+     if (map['produto'] != null) {
+       for (var produto in map['produto']) {
+         produtos.add(produto.toString());
+       }
+     }
+
+     return Pedido(
+       id: map['id'],
+       cliente: map['cliente'],
+       produto: produtos,
+       valorTotal: double.parse(map['vl_total'].replaceAll(',', '.')),
+       valorEntrega: double.parse(map['vl_entrega'].replaceAll(',', '.')),
+       retirada: map['retirada'].toString().toLowerCase() == 'não' ? false : true,
+       status: map['status'],
+       observacao: map['obs'],
+     );
+   }
 }

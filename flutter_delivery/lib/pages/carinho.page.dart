@@ -85,34 +85,54 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
       carrinho.add(newItem);
   }
 
-  Future<void> _realizarPedido(double totalPedido, String IDs) async{
+  Future<void> _realizarPedido(double totalPedido, String IDs, String quant) async{
     String url = 'https://dev.levsistemas.com.br/api.flutter/pedidos';
 
     try {
       final response = await http.post(
         Uri.parse(url),
         body: {
-          'cliente': widget.cliente.id,
+          'cliente': (widget.cliente.id).toString(),
           'produto': IDs,
-          'vlEntrega': 'pode ser nulo ou passar algum valor separado por PONTO',
-          'vlTotal': totalPedido,
+          'vlEntrega': (totalPedido + 2).toString(),
+          'vlTotal': (totalPedido).toString(),
           'obs': 'qialquer observacao',
+          'quantidade': quant
         },
       );
       if (response.statusCode == 200){
 
       }else{
-
+        _onError();
       }
     } catch (error) {
       print('Erro ao realizar pedido: $error');
     }
   }
 
+  void _onError(){
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Erro para fazer Pedido'),
+          content: const Text('Erro para fazer Pedido'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Fechar'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     double totalPedido = calcularTotalPedido();
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFFEAEAEA),
@@ -163,14 +183,17 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
               ),
               PedidoWidget(totalPedido: totalPedido, onPressedRealizarPedido: () {
                 List<int> listaIds = [];
+                List<int> listaIdsQuant = [];
                 for (var item in carrinho) {
                   listaIds.add(item.idProduto);
                 }
+                for (var item in carrinho) {
+                  listaIdsQuant.add(item.quantidade);
+                }
                 String produtosString = listaIds.join(',');
-
-                //_realizarPedido(totalPedido,produtosString);
-                print('Pedido realizado!');
-
+                String quantidades = listaIdsQuant.join(',');
+                _realizarPedido(totalPedido,produtosString,quantidades);
+                //print('Pedido realizado!');
               }),
             ],
           ),
