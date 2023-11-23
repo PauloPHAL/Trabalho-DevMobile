@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_delivery/model/cliente.dart';
 import 'package:http/http.dart' as http;
+
 class Item {
   int idProduto;
   String nome;
@@ -101,13 +102,33 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
         },
       );
       if (response.statusCode == 200){
-
+        _onAcerto();
       }else{
         _onError();
       }
     } catch (error) {
       print('Erro ao realizar pedido: $error');
     }
+  }
+
+  void _onAcerto(){
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Pedido Realizado com sucesso'),
+          content: const Text('Pedido feito.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Fechar'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void _onError(){
@@ -193,7 +214,6 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
                 String produtosString = listaIds.join(',');
                 String quantidades = listaIdsQuant.join(',');
                 _realizarPedido(totalPedido,produtosString,quantidades);
-                //print('Pedido realizado!');
               }),
             ],
           ),

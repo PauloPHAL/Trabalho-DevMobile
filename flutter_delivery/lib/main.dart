@@ -4,6 +4,12 @@ void main() {
   runApp(const MyApp());
 }
 
+/*
+Precisa rodar esse comando no terminal!!!
+
+
+flutter pub run flutter_launcher_icons:main
+*/
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
