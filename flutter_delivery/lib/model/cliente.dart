@@ -6,6 +6,7 @@ class Cliente {
    String endereco;
    String cep;
    String numeroCasa;
+   String img ;
 
   Cliente({
     required this.id,
@@ -15,6 +16,7 @@ class Cliente {
     required this.endereco,
     required this.cep,
     required this.numeroCasa,
+    required this.img
   });
 
   factory Cliente.fromJson(Map<String, dynamic> json) {
@@ -26,6 +28,7 @@ class Cliente {
       endereco: json['endereco'],
       cep: json['cep'],
       numeroCasa: json['numeroCasa'],
+      img: json['img'],
     );
   }
 }

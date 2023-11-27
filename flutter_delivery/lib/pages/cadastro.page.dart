@@ -7,6 +7,8 @@ import 'package:image_picker/image_picker.dart';
 
 
 class CadastroPage extends StatefulWidget {
+
+  late String imagemBase64;
   @override
   _CadastroPageState createState() => _CadastroPageState();
 }
@@ -29,7 +31,7 @@ class _CadastroPageState extends State<CadastroPage> {
 
   Future<void> _cadastrar(String img) async{
     const String url = 'https://dev.levsistemas.com.br/api.flutter/clientes/cadastra';
-
+    print(img);
     try {
       final response = await http.post(
         Uri.parse(url),
@@ -113,7 +115,7 @@ class _CadastroPageState extends State<CadastroPage> {
               children: [
                 const SizedBox(height: 70),
                 Container(
-                  height: 650,
+                  height: 660,
                   width: 345,
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -206,7 +208,8 @@ class _CadastroPageState extends State<CadastroPage> {
                           onPressed: () async {
                             var imagem = await ImagePicker().pickImage(source: ImageSource.camera);
                             if (imagem != null) {
-
+                              File imagemSelecionada = File(imagem.path);
+                              widget.imagemBase64 = await imageToBase64(imagemSelecionada);
                             }
                           },
                           child: const Icon(Icons.photo_camera),
@@ -217,7 +220,7 @@ class _CadastroPageState extends State<CadastroPage> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          _cadastrar();
+                          _cadastrar(widget.imagemBase64);
                         },
                         child: Container(
                           alignment: Alignment.center,

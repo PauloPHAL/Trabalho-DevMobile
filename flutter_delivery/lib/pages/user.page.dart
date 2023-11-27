@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 import '../model/cliente.dart';
@@ -68,9 +70,13 @@ class _UserPageState extends State<UserPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(
-                  Icons.account_circle,
-                  size: 96.0,
+                Center(
+                    child: Image.memory(
+                      base64Decode(widget.cliente.img),
+                      fit: BoxFit.cover,
+                      width: 96.0,
+                      height: 96.0,
+                    )
                 ),
                 Text(
                   widget.cliente.nome,
