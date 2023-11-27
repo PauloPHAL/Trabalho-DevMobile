@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_delivery/pages/loja/produtos.pages.dart';
+
 
 class Category {
   final String name;
@@ -19,12 +21,12 @@ class LojaPage extends StatefulWidget {
 
 class _LojaPageState extends State<LojaPage> {
   final List<Category> categories = [
-    Category(name: 'Pizza', color: const Color(0xFFE7D7), imageUrl: 'assets/images/pizza.png', id: 2),
-    Category(name: 'Lanches', color: const Color(0xFFCEAD), imageUrl: 'assets/images/lanches.png', id: 1),
-    Category(name: 'Comidas', color: const Color(0xFFCEAD), imageUrl: 'assets/images/comida.jpg', id: 5),
-    Category(name: 'Bebidas', color: const Color(0xFFCEAD), imageUrl: 'assets/images/bebidas.png', id: 3),
-    Category(name: 'Açaí', color: const Color(0xFFCEAD), imageUrl: 'assets/images/acai.png', id: 6),
-    Category(name: 'Sobremesas', color: const Color(0xFFCEAD), imageUrl: 'assets/images/sobremesas.png', id: 4),
+    Category(name: 'Pizza', color: const Color(0x00ffe7d7), imageUrl: 'assets/images/pizza.png', id: 2),
+    Category(name: 'Lanches', color: const Color(0x00ffcead), imageUrl: 'assets/images/lanches.png', id: 1),
+    Category(name: 'Comidas', color: const Color(0x00ffcead), imageUrl: 'assets/images/comida.jpg', id: 5),
+    Category(name: 'Bebidas', color: const Color(0x00ffcead), imageUrl: 'assets/images/bebidas.png', id: 3),
+    Category(name: 'Açaí', color: const Color(0x00ffcead), imageUrl: 'assets/images/acai.png', id: 6),
+    Category(name: 'Sobremesas', color: const Color(0x00ffcead), imageUrl: 'assets/images/sobremesas.png', id: 4),
   ];
 
   @override
@@ -47,6 +49,13 @@ class _LojaPageState extends State<LojaPage> {
           return InkWell(
             onTap: () {
               widget.onCategoriaSelecionada(4, category.id);
+
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => ProdutosPage( idCategoria: category.id),
+              //   ),
+              // );
             },
             child: CategoryItem(category: category),
           );

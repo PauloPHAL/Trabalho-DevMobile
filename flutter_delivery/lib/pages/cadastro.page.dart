@@ -1,6 +1,11 @@
+import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_delivery/pages/login.page.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
+
+
 class CadastroPage extends StatefulWidget {
   @override
   _CadastroPageState createState() => _CadastroPageState();
@@ -16,8 +21,14 @@ class _CadastroPageState extends State<CadastroPage> {
   TextEditingController senhaController = TextEditingController();
   TextEditingController confirmarSenhaController = TextEditingController();
 
-  Future<void> _cadastrar() async{
-    final String url = 'https://dev.levsistemas.com.br/api.flutter/clientes/cadastra';
+
+  Future<String> imageToBase64(File file) async {
+    List<int> imageBytes = await file.readAsBytes();
+    return base64Encode(imageBytes);
+  }
+
+  Future<void> _cadastrar(String img) async{
+    const String url = 'https://dev.levsistemas.com.br/api.flutter/clientes/cadastra';
 
     try {
       final response = await http.post(
@@ -31,6 +42,7 @@ class _CadastroPageState extends State<CadastroPage> {
           'endereco': enderecoController.text,
           'cep': cepController.text,
           'numeroCasa': numeroCasaController.text,
+          'img': img
         },
       );
       if (response.statusCode == 200) {
@@ -54,14 +66,14 @@ class _CadastroPageState extends State<CadastroPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Erro de cadastro'),
-          content: Text('Senhas são diferentes'),
+          title: const Text('Erro de cadastro'),
+          content: const Text('Senhas são diferentes'),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('Fechar'),
+              child: const Text('Fechar'),
             ),
           ],
         );
@@ -101,7 +113,7 @@ class _CadastroPageState extends State<CadastroPage> {
               children: [
                 const SizedBox(height: 70),
                 Container(
-                  height: 580,
+                  height: 650,
                   width: 345,
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -182,6 +194,22 @@ class _CadastroPageState extends State<CadastroPage> {
                           decoration: const InputDecoration(
                             labelText: "Confirmar senha",
                           ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      SizedBox(
+                        width: 250,
+                        child: FloatingActionButton(
+                          heroTag: "BotaoCamera",
+                          onPressed: () async {
+                            var imagem = await ImagePicker().pickImage(source: ImageSource.camera);
+                            if (imagem != null) {
+
+                            }
+                          },
+                          child: const Icon(Icons.photo_camera),
                         ),
                       ),
                       const SizedBox(

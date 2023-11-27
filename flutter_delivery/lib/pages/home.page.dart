@@ -95,6 +95,7 @@ class _HomePageState extends State<HomePage> {
       );
     }  else {
       return ProdutosPage(idCategoria: _idCategoria);
+
     }
   }
 }
