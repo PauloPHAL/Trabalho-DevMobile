@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  void _openErro(){
+  void _openErro() {
     showDialog(
       context: context,
       builder: (context) {
@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void _openMyPage(Cliente cliente){
+  void _openMyPage(Cliente cliente) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => HomePage(cliente)),
@@ -212,5 +212,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-
-

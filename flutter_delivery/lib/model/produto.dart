@@ -1,8 +1,8 @@
 class Produto {
-   int id;
-   String nome;
-   double valor;
-   String img;
+  int id;
+  String nome;
+  double valor;
+  String img;
 
   Produto({
     required this.id,
@@ -19,5 +19,4 @@ class Produto {
       img: json['img'],
     );
   }
-
 }

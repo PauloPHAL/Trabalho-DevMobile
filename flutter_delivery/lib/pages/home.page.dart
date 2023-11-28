@@ -6,7 +6,6 @@ import 'package:flutter_delivery/pages/carinho.page.dart';
 import '../model/cliente.dart';
 import 'loja/produtos.pages.dart';
 
-
 class HomePage extends StatefulWidget {
   Cliente cliente;
 
@@ -20,13 +19,14 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   bool _isOpenProdutos = false;
   int _idCategoria = 0;
+
   void _changeSelectedIndex(int newIndex) {
     setState(() {
       _selectedIndex = newIndex;
     });
   }
 
-  void _onCategoriaSelecionada(int newIndex, int idCategoria){
+  void _onCategoriaSelecionada(int newIndex, int idCategoria) {
     setState(() {
       _isOpenProdutos = true;
       _idCategoria = idCategoria;
@@ -85,18 +85,11 @@ class _HomePageState extends State<HomePage> {
       return CarrinhoPage(widget.cliente);
     } else if (selectedIndex == 3) {
       _isOpenProdutos = false;
-      return UserPage(
-        widget.cliente
-      );
+      return UserPage(widget.cliente);
     } else if (_selectedIndex == 3) {
-      return UserPage(
-          widget.cliente
-      );
-    }  else {
+      return UserPage(widget.cliente);
+    } else {
       return ProdutosPage(idCategoria: _idCategoria);
-
     }
   }
 }
-
-

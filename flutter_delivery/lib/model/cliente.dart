@@ -1,7 +1,7 @@
 import 'dart:convert';
 import '../util/prefs.dart';
 
-class Cliente{
+class Cliente {
   int? id;
   String? nome;
   String? email;
@@ -11,16 +11,15 @@ class Cliente{
   String? numeroCasa;
   String? img;
 
-  Cliente({
-     this.id,
-     this.nome,
-     this.email,
-     this.telefone,
-     this.endereco,
-     this.cep,
-     this.numeroCasa,
-     this.img
-  });
+  Cliente(
+      {this.id,
+      this.nome,
+      this.email,
+      this.telefone,
+      this.endereco,
+      this.cep,
+      this.numeroCasa,
+      this.img});
 
   factory Cliente.fromJson(Map<String, dynamic> json) {
     return Cliente(
@@ -40,7 +39,7 @@ class Cliente{
     return 'Usuario{id: $id, nome: $nome, email: $email, telefone: $telefone, endereco: $endereco, cep: $cep, numeroCasa: $numeroCasa, img: $img}';
   }
 
-  Cliente.fromMap(Map<String, dynamic> map){
+  Cliente.fromMap(Map<String, dynamic> map) {
     id = map["id"];
     nome = map["nome"];
     email = map["email"];

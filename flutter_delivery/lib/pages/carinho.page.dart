@@ -4,9 +4,9 @@ import 'package:http/http.dart' as http;
 
 import '../model/item.dart';
 
-
 class CarrinhoPage extends StatefulWidget {
   Cliente cliente;
+
   CarrinhoPage(this.cliente);
 
   @override
@@ -77,10 +77,11 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
   static List<Item> carrinho = [];
 
   static void _adicionarItemAoCarrinho(Item newItem) {
-      carrinho.add(newItem);
+    carrinho.add(newItem);
   }
 
-  Future<void> _realizarPedido(double totalPedido, String IDs, String quant) async{
+  Future<void> _realizarPedido(
+      double totalPedido, String IDs, String quant) async {
     String url = 'https://dev.levsistemas.com.br/api.flutter/pedidos';
 
     try {
@@ -95,9 +96,9 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
           'quantidade': quant
         },
       );
-      if (response.statusCode == 200){
+      if (response.statusCode == 200) {
         _onAcerto();
-      }else{
+      } else {
         _onError();
       }
     } catch (error) {
@@ -105,7 +106,7 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
     }
   }
 
-  void _onAcerto(){
+  void _onAcerto() {
     showDialog(
       context: context,
       builder: (context) {
@@ -125,7 +126,7 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
     );
   }
 
-  void _onError(){
+  void _onError() {
     showDialog(
       context: context,
       builder: (context) {
@@ -196,19 +197,21 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
                   },
                 ),
               ),
-              PedidoWidget(totalPedido: totalPedido, onPressedRealizarPedido: () {
-                List<int> listaIds = [];
-                List<int> listaIdsQuant = [];
-                for (var item in carrinho) {
-                  listaIds.add(item.idProduto);
-                }
-                for (var item in carrinho) {
-                  listaIdsQuant.add(item.quantidade);
-                }
-                String produtosString = listaIds.join(',');
-                String quantidades = listaIdsQuant.join(',');
-                _realizarPedido(totalPedido,produtosString,quantidades);
-              }),
+              PedidoWidget(
+                  totalPedido: totalPedido,
+                  onPressedRealizarPedido: () {
+                    List<int> listaIds = [];
+                    List<int> listaIdsQuant = [];
+                    for (var item in carrinho) {
+                      listaIds.add(item.idProduto);
+                    }
+                    for (var item in carrinho) {
+                      listaIdsQuant.add(item.quantidade);
+                    }
+                    String produtosString = listaIds.join(',');
+                    String quantidades = listaIdsQuant.join(',');
+                    _realizarPedido(totalPedido, produtosString, quantidades);
+                  }),
             ],
           ),
         ),
@@ -229,7 +232,8 @@ class PedidoWidget extends StatelessWidget {
   final double totalPedido;
   final VoidCallback onPressedRealizarPedido;
 
-  PedidoWidget({required this.totalPedido, required this.onPressedRealizarPedido});
+  PedidoWidget(
+      {required this.totalPedido, required this.onPressedRealizarPedido});
 
   @override
   Widget build(BuildContext context) {
@@ -280,7 +284,10 @@ class BotaoQuantidade extends StatelessWidget {
   final Function() onIncrement;
   final Function() onDecrement;
 
-  BotaoQuantidade({required this.quantidade, required this.onIncrement, required this.onDecrement});
+  BotaoQuantidade(
+      {required this.quantidade,
+      required this.onIncrement,
+      required this.onDecrement});
 
   @override
   Widget build(BuildContext context) {
@@ -312,9 +319,3 @@ class BotaoQuantidade extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-

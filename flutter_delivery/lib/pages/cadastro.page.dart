@@ -5,10 +5,9 @@ import 'package:flutter_delivery/pages/login.page.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 
-
 class CadastroPage extends StatefulWidget {
-
   late String imagemBase64;
+
   @override
   _CadastroPageState createState() => _CadastroPageState();
 }
@@ -23,14 +22,14 @@ class _CadastroPageState extends State<CadastroPage> {
   TextEditingController senhaController = TextEditingController();
   TextEditingController confirmarSenhaController = TextEditingController();
 
-
   Future<String> imageToBase64(File file) async {
     List<int> imageBytes = await file.readAsBytes();
     return base64Encode(imageBytes);
   }
 
-  Future<void> _cadastrar(String img) async{
-    const String url = 'https://dev.levsistemas.com.br/api.flutter/clientes/cadastra';
+  Future<void> _cadastrar(String img) async {
+    const String url =
+        'https://dev.levsistemas.com.br/api.flutter/clientes/cadastra';
     print(img);
     try {
       final response = await http.post(
@@ -57,13 +56,14 @@ class _CadastroPageState extends State<CadastroPage> {
     }
   }
 
-  void _irLogin(){
+  void _irLogin() {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => LoginPage()),
     );
   }
-  void _erro(){
+
+  void _erro() {
     showDialog(
       context: context,
       builder: (context) {
@@ -206,10 +206,12 @@ class _CadastroPageState extends State<CadastroPage> {
                         child: FloatingActionButton(
                           heroTag: "BotaoCamera",
                           onPressed: () async {
-                            var imagem = await ImagePicker().pickImage(source: ImageSource.camera);
+                            var imagem = await ImagePicker()
+                                .pickImage(source: ImageSource.camera);
                             if (imagem != null) {
                               File imagemSelecionada = File(imagem.path);
-                              widget.imagemBase64 = await imageToBase64(imagemSelecionada);
+                              widget.imagemBase64 =
+                                  await imageToBase64(imagemSelecionada);
                             }
                           },
                           child: const Icon(Icons.photo_camera),

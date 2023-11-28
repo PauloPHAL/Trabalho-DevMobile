@@ -5,5 +5,10 @@ class Category {
   final Color color;
   final String imageUrl;
   final int id;
-  Category({required this.name, required this.color, required this.imageUrl, required this.id});
+
+  Category(
+      {required this.name,
+      required this.color,
+      required this.imageUrl,
+      required this.id});
 }

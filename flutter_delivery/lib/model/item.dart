@@ -4,5 +4,9 @@ class Item {
   double preco;
   int quantidade;
 
-  Item({required this.idProduto,required this.nome, required this.preco, required this.quantidade});
+  Item(
+      {required this.idProduto,
+      required this.nome,
+      required this.preco,
+      required this.quantidade});
 }

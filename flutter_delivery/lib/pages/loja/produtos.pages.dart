@@ -5,7 +5,6 @@ import 'package:http/http.dart' as http;
 import '../../model/item.dart';
 import '../../model/produto.dart';
 
-
 class ProdutosPage extends StatefulWidget {
   int idCategoria;
 
@@ -16,13 +15,14 @@ class ProdutosPage extends StatefulWidget {
 }
 
 class _ProdutosPageState extends State<ProdutosPage> {
-
   Future<List<Produto>> getProduto() async {
-    var url = Uri.parse('https://dev.levsistemas.com.br/api.flutter/produtos?idCategoria=${widget.idCategoria}');
+    var url = Uri.parse(
+        'https://dev.levsistemas.com.br/api.flutter/produtos?idCategoria=${widget.idCategoria}');
     var response = await http.get(url);
     if (response.statusCode == 200) {
       List<dynamic> jsonData = jsonDecode(utf8.decode(response.bodyBytes));
-      List<Produto> produto = jsonData.map((json) => Produto.fromJson(json)).toList();
+      List<Produto> produto =
+          jsonData.map((json) => Produto.fromJson(json)).toList();
       return produto;
     } else {
       throw Exception('Erro ao carregar produtos');
@@ -90,13 +90,12 @@ class ProductItem extends StatelessWidget {
         child: Column(
           children: [
             Center(
-              child: Image.memory(
-                base64Decode(product.img),
-                fit: BoxFit.cover,
-                width: 300.0,
-                height: 300.0,
-              )
-            ),
+                child: Image.memory(
+              base64Decode(product.img),
+              fit: BoxFit.cover,
+              width: 300.0,
+              height: 300.0,
+            )),
             const SizedBox(height: 8.0),
             Text(
               product.nome,
@@ -174,7 +173,11 @@ class _CarinhoState extends State<Carinho> {
             const SizedBox(height: 16.0),
             ElevatedButton.icon(
               onPressed: () {
-                Item item = Item(idProduto: widget.product.id,nome: widget.product.nome, preco: widget.product.valor, quantidade: quantidade);
+                Item item = Item(
+                    idProduto: widget.product.id,
+                    nome: widget.product.nome,
+                    preco: widget.product.valor,
+                    quantidade: quantidade);
                 CarrinhoPage.adicionarItemAoCarrinho(item);
                 Navigator.pop(context);
               },

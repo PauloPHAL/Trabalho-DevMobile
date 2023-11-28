@@ -6,19 +6,22 @@ import '../model/pedido.dart';
 
 class PedidosPage extends StatefulWidget {
   Cliente cliente;
+
   PedidosPage(this.cliente);
+
   @override
   _PedidosPageState createState() => _PedidosPageState();
 }
 
 class _PedidosPageState extends State<PedidosPage> {
-
   Future<List<Pedido>> getPedidos() async {
-    var url = Uri.parse('https://dev.levsistemas.com.br/api.flutter/pedidos?idCliente=${widget.cliente.id}');
+    var url = Uri.parse(
+        'https://dev.levsistemas.com.br/api.flutter/pedidos?idCliente=${widget.cliente.id}');
     var response = await http.get(url);
     if (response.statusCode == 200) {
       List<dynamic> jsonData = jsonDecode(utf8.decode(response.bodyBytes));
-      List<Pedido> produto = jsonData.map((json) => Pedido.fromJson(json)).toList();
+      List<Pedido> produto =
+          jsonData.map((json) => Pedido.fromJson(json)).toList();
       return produto;
     } else {
       throw Exception('Erro ao carregar pedidos');
@@ -72,16 +75,17 @@ class PedidoItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 0.0, left: 16.0, right: 16.0, bottom: 10.0), // Padding entre os elementos
+      padding: const EdgeInsets.only(
+          top: 0.0, left: 16.0, right: 16.0, bottom: 10.0),
+      // Padding entre os elementos
       child: Container(
         color: const Color(0xFFEAEAEA),
         child: ListTile(
           title: Text('Status: ${pedido.status}'),
-          subtitle: Text('Produtos: ${pedido.produto} \nTotal: \$${pedido.valorTotal.toStringAsFixed(2)}'),
+          subtitle: Text(
+              'Produtos: ${pedido.produto} \nTotal: \$${pedido.valorTotal.toStringAsFixed(2)}'),
         ),
       ),
     );
   }
 }
-
-

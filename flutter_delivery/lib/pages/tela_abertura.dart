@@ -9,13 +9,12 @@ class TelaAbertura extends StatefulWidget {
 }
 
 class _TelaAberturaState extends State<TelaAbertura> {
-
   void _inicializarAplicacao(BuildContext context) {
     Future futureA = Future.delayed(const Duration(seconds: 5));
-    Future<Cliente?>  futureB = Cliente.obter();
+    Future<Cliente?> futureB = Cliente.obter();
     Future.wait([futureA, futureB]).then((List values) {
       Cliente? usuario = values[1];
-      if(usuario != null){
+      if (usuario != null) {
         _openMyPage(usuario);
       } else {
         _openLogin();
@@ -23,14 +22,14 @@ class _TelaAberturaState extends State<TelaAbertura> {
     });
   }
 
-  void _openMyPage(Cliente cliente){
+  void _openMyPage(Cliente cliente) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => HomePage(cliente)),
     );
   }
 
-  void _openLogin(){
+  void _openLogin() {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => LoginPage()),
@@ -42,7 +41,6 @@ class _TelaAberturaState extends State<TelaAbertura> {
     super.initState();
     _inicializarAplicacao(context);
   }
-
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../model/categoria.dart';
 
-
 class LojaPage extends StatefulWidget {
   final Function(int, int) onCategoriaSelecionada;
 
@@ -13,12 +12,36 @@ class LojaPage extends StatefulWidget {
 
 class _LojaPageState extends State<LojaPage> {
   final List<Category> categories = [
-    Category(name: 'Pizza', color: const Color(0x00ffe7d7), imageUrl: 'assets/images/pizza.png', id: 2),
-    Category(name: 'Lanches', color: const Color(0x00ffcead), imageUrl: 'assets/images/lanches.png', id: 1),
-    Category(name: 'Comidas', color: const Color(0x00ffcead), imageUrl: 'assets/images/comida.jpg', id: 5),
-    Category(name: 'Bebidas', color: const Color(0x00ffcead), imageUrl: 'assets/images/bebidas.png', id: 3),
-    Category(name: 'Açaí', color: const Color(0x00ffcead), imageUrl: 'assets/images/acai.png', id: 6),
-    Category(name: 'Sobremesas', color: const Color(0x00ffcead), imageUrl: 'assets/images/sobremesas.png', id: 4),
+    Category(
+        name: 'Pizza',
+        color: const Color(0x00ffe7d7),
+        imageUrl: 'assets/images/pizza.png',
+        id: 2),
+    Category(
+        name: 'Lanches',
+        color: const Color(0x00ffcead),
+        imageUrl: 'assets/images/lanches.png',
+        id: 1),
+    Category(
+        name: 'Comidas',
+        color: const Color(0x00ffcead),
+        imageUrl: 'assets/images/comida.jpg',
+        id: 5),
+    Category(
+        name: 'Bebidas',
+        color: const Color(0x00ffcead),
+        imageUrl: 'assets/images/bebidas.png',
+        id: 3),
+    Category(
+        name: 'Açaí',
+        color: const Color(0x00ffcead),
+        imageUrl: 'assets/images/acai.png',
+        id: 6),
+    Category(
+        name: 'Sobremesas',
+        color: const Color(0x00ffcead),
+        imageUrl: 'assets/images/sobremesas.png',
+        id: 4),
   ];
 
   @override
@@ -86,5 +109,3 @@ class CategoryItem extends StatelessWidget {
     );
   }
 }
-
-
