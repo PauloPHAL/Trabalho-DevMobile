@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_delivery/pages/login.page.dart';
+import 'package:flutter_delivery/pages/tela_abertura.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,7 +7,6 @@ void main() {
 
 /*
 Precisa rodar esse comando no terminal!!!
-
 
 flutter pub run flutter_launcher_icons:main
 */
@@ -27,7 +26,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: LoginPage(),
+      home: TelaAbertura(),
     );
   }
 }

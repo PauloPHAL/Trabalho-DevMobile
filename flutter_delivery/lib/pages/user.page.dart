@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import '../model/cliente.dart';
+import 'login.page.dart';
 
 class UserPage extends StatefulWidget {
-   Cliente cliente;
+  Cliente cliente;
 
   UserPage(this.cliente);
 
@@ -21,19 +22,27 @@ class _UserPageState extends State<UserPage> {
   @override
   void initState() {
     super.initState();
-    emailController.text = widget.cliente.email;
-    phoneController.text = widget.cliente.telefone;
-    addressController.text = widget.cliente.endereco;
-    cepController.text = widget.cliente.cep;
-    numeroController.text = widget.cliente.numeroCasa;
+    emailController.text = widget.cliente.email!;
+    phoneController.text = widget.cliente.telefone!;
+    addressController.text = widget.cliente.endereco!;
+    cepController.text = widget.cliente.cep!;
+    numeroController.text = widget.cliente.numeroCasa!;
   }
 
   // void _salvarAlteracoes(){
   //
   // }
 
-  void _sairApp(){
+  void _sairApp() {
+    _openLogin();
+    Cliente.limpar();
+  }
 
+  void _openLogin() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => LoginPage()),
+    );
   }
 
   @override
@@ -49,7 +58,8 @@ class _UserPageState extends State<UserPage> {
         automaticallyImplyLeading: false,
         actions: [
           Theme(
-            data: ThemeData(iconTheme: const IconThemeData(color: Colors.black)),
+            data:
+                ThemeData(iconTheme: const IconThemeData(color: Colors.black)),
             child: IconButton(
               icon: const Icon(Icons.exit_to_app),
               onPressed: () {
@@ -68,16 +78,20 @@ class _UserPageState extends State<UserPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Center(
-                    child: Image.memory(
-                      base64Decode(widget.cliente.img),
-                      fit: BoxFit.cover,
-                      width: 96.0,
-                      height: 96.0,
-                    )
+                const Icon(
+                  Icons.account_circle,
+                  size: 96.0,
                 ),
+                // Center(
+                //     child: Image.memory(
+                //       base64Decode(widget.cliente.img!),
+                //       fit: BoxFit.cover,
+                //       width: 96.0,
+                //       height: 96.0,
+                //     )
+                // ),
                 Text(
-                  widget.cliente.nome,
+                  widget.cliente.nome!,
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 16.0),

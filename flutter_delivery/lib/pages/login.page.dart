@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
       if (response.statusCode == 200) {
         final Map<String, dynamic> responseData = json.decode(response.body);
         final Cliente cliente = Cliente.fromJson(responseData);
-
+        cliente.salvar();
         _openMyPage(cliente);
       } else {
         _openErro();
