@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-
 import '../model/cliente.dart';
 
 class UserPage extends StatefulWidget {
@@ -29,7 +27,7 @@ class _UserPageState extends State<UserPage> {
     cepController.text = widget.cliente.cep;
     numeroController.text = widget.cliente.numeroCasa;
   }
-  //
+
   // void _salvarAlteracoes(){
   //
   // }

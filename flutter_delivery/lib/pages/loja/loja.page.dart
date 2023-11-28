@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_delivery/pages/loja/produtos.pages.dart';
+import '../../model/categoria.dart';
 
-
-class Category {
-  final String name;
-  final Color color;
-  final String imageUrl;
-  final int id;
-  Category({required this.name, required this.color, required this.imageUrl, required this.id});
-}
 
 class LojaPage extends StatefulWidget {
   final Function(int, int) onCategoriaSelecionada;

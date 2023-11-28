@@ -2,14 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_delivery/model/cliente.dart';
 import 'package:http/http.dart' as http;
 
-class Item {
-  int idProduto;
-  String nome;
-  double preco;
-  int quantidade;
+import '../model/item.dart';
 
-  Item({required this.idProduto,required this.nome, required this.preco, required this.quantidade});
-}
 
 class CarrinhoPage extends StatefulWidget {
   Cliente cliente;
