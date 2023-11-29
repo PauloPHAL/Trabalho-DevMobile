@@ -82,7 +82,7 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
   Future<void> _realizarPedido(
       double totalPedido, String IDs, String quant) async {
     String url = 'https://dev.levsistemas.com.br/api.flutter/pedidos';
-    print(totalPedido);
+    print(totalPedido.toString());
     try {
       final response = await http.post(
         Uri.parse(url),
@@ -96,6 +96,8 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
         },
       );
       if (response.statusCode == 200) {
+        carrinho = [];
+        setState(() {});
         _onAcerto();
       } else {
         _onError();
