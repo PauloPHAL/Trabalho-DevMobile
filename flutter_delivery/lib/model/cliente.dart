@@ -30,7 +30,7 @@ class Cliente {
       endereco: json['endereco'],
       cep: json['cep'],
       numeroCasa: json['numeroCasa'],
-      //img: json['img'],
+      img: json['img'],
     );
   }
 

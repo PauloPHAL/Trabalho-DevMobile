@@ -45,7 +45,15 @@ class _TelaAberturaState extends State<TelaAbertura> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.green[200],
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xFF8A2387), Color(0xFFE94057), Color(0xFFF27121)],
+        ),
+      ),
       alignment: Alignment.center,
       child: Stack(
         fit: StackFit.expand,

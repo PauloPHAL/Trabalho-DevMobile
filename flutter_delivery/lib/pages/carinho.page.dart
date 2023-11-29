@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_delivery/model/cliente.dart';
 import 'package:http/http.dart' as http;
-
 import '../model/item.dart';
 
 class CarrinhoPage extends StatefulWidget {

@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 
 class CadastroPage extends StatefulWidget {
-  late String imagemBase64;
+  late String imagemBase64 = '';
 
   @override
   _CadastroPageState createState() => _CadastroPageState();
@@ -30,7 +30,6 @@ class _CadastroPageState extends State<CadastroPage> {
   Future<void> _cadastrar(String img) async {
     const String url =
         'https://dev.levsistemas.com.br/api.flutter/clientes/cadastra';
-    print(img);
     try {
       final response = await http.post(
         Uri.parse(url),
@@ -115,8 +114,8 @@ class _CadastroPageState extends State<CadastroPage> {
               children: [
                 const SizedBox(height: 70),
                 Container(
-                  height: 660,
-                  width: 345,
+                  height: 682,
+                  width: 340,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
@@ -203,18 +202,50 @@ class _CadastroPageState extends State<CadastroPage> {
                       ),
                       SizedBox(
                         width: 250,
-                        child: FloatingActionButton(
-                          heroTag: "BotaoCamera",
-                          onPressed: () async {
-                            var imagem = await ImagePicker()
-                                .pickImage(source: ImageSource.camera);
-                            if (imagem != null) {
-                              File imagemSelecionada = File(imagem.path);
-                              widget.imagemBase64 =
-                                  await imageToBase64(imagemSelecionada);
-                            }
-                          },
-                          child: const Icon(Icons.photo_camera),
+                        child: Stack(
+                          children: [
+                            FloatingActionButton(
+                              heroTag: "BotaoCamera",
+                              onPressed: () async {
+                                var imagem = await ImagePicker()
+                                    .pickImage(source: ImageSource.camera);
+                                if (imagem != null) {
+                                  File imagemSelecionada = File(imagem.path);
+                                  widget.imagemBase64 =
+                                      await imageToBase64(imagemSelecionada);
+                                  setState(() {});
+                                }
+                              },
+                              child: const Icon(Icons.photo_camera),
+                            ),
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: Visibility(
+                                visible: widget.imagemBase64 != null &&
+                                    widget.imagemBase64.isNotEmpty,
+                                child: SizedBox(
+                                  width: 96.0,
+                                  height: 96.0,
+                                  child: Image.memory(
+                                    base64Decode(widget.imagemBase64),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: Visibility(
+                                visible: widget.imagemBase64 == null ||
+                                    widget.imagemBase64.isEmpty,
+                                child: const SizedBox(
+                                  width: 96.0,
+                                  height: 96.0,
+                                  child: Icon(Icons.account_circle, size: 96.0),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       const SizedBox(
@@ -248,9 +279,6 @@ class _CadastroPageState extends State<CadastroPage> {
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 30,
                       ),
                     ],
                   ),
