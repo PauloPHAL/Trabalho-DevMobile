@@ -29,10 +29,6 @@ class _UserPageState extends State<UserPage> {
     numeroController.text = widget.cliente.numeroCasa!;
   }
 
-  // void _salvarAlteracoes(){
-  //
-  // }
-
   void _sairApp() {
     _openLogin();
     Cliente.limpar();
@@ -78,19 +74,21 @@ class _UserPageState extends State<UserPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                widget.cliente.img != null
-                    ? Center(
-                        child: Image.memory(
-                          base64Decode(widget.cliente.img!),
-                          fit: BoxFit.cover,
-                          width: 96.0,
-                          height: 96.0,
-                        ),
-                      )
-                    : const Icon(
-                        Icons.account_circle,
-                        size: 96.0,
-                      ),
+                if (widget.cliente.img != null &&
+                    widget.cliente.img!.isNotEmpty)
+                  Center(
+                    child: Image.memory(
+                      base64Decode(widget.cliente.img!),
+                      fit: BoxFit.cover,
+                      width: 96.0,
+                      height: 96.0,
+                    ),
+                  )
+                else
+                  const Icon(
+                    Icons.account_circle,
+                    size: 96.0,
+                  ),
                 Text(
                   widget.cliente.nome!,
                   textAlign: TextAlign.center,
@@ -136,12 +134,6 @@ class _UserPageState extends State<UserPage> {
                   ),
                 ),
                 const SizedBox(height: 16.0),
-                // ElevatedButton(
-                //   onPressed: () {
-                //     _salvarAlteracoes();
-                //   },
-                //   child: const Text('Salvar Alterações'),
-                // ),
               ],
             ),
           ),

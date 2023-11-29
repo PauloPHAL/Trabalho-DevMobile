@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_delivery/pages/tela_abertura.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
 /*
 Precisa rodar esse comando no terminal!!!
 
 flutter pub run flutter_launcher_icons:main
 */
+
+void main() {
+  runApp(const MyApp());
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

@@ -14,3 +14,15 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+/*
+Precisa rodar esse comando no terminal!!!
+
+flutter pub run flutter_launcher_icons:main
+*/
+
+EX.:
+    C:\Users\<Seu Usuario>\StudioProjects\Trabalho-DevMobile\flutter_delivery> 
+
+para ser mais exato o caminho do arquivo
