@@ -3,7 +3,6 @@ import 'package:flutter_delivery/pages/tela_abertura.dart';
 
 /*
 Precisa rodar esse comando no terminal!!!
-
 flutter pub run flutter_launcher_icons:main
 */
 
